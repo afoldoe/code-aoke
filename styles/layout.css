@@ -1,5 +1,5 @@
 header {
-  background-color: #6E9AAF;
+  background-color: #373F51;
   height: 25rem;
   border-bottom: #1B2347 10px solid;
   color: #1B2347;
@@ -17,9 +17,11 @@ header h1 {
 @media only screen and (min-width: 900px) {
     header {
         background: url(https://67.media.tumblr.com/9343c939cb8629156ec1556da371c4cf/tumblr_n6o4tnX9Dl1t5r1mpo1_500.gif) no-repeat center center;
-        height: 100%;
+        height: 90%;
         transition: .5s;
         border-bottom: none;
+
+        /*url(https://67.media.tumblr.com/9343c939cb8629156ec1556da371c4cf/tumblr_n6o4tnX9Dl1t5r1mpo1_500.gif) no-repeat center center;*/
     }
     header h1 {
       display: none;
