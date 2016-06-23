@@ -3,18 +3,26 @@ var request = require('request');
 
 (function(){
 
-  /// VIDEO CODE TO BE REFACTORED TO YOUTUBE TRACK FILTER ////
-  var videos = [];
   var Video = function(opts){
     this.title = opts.title,
     this.image = opts.image,
     this.id = opts.id,
     this.description = opts.description
   };
+  var videos = [];
 
-  var videoFetch = function(track , artist, callback){
+
+  var wordInString = function(s, word){
+    return new RegExp( '\\b' + word + '\\b', 'i').test(s);
+  }
+
+
+  var videoRequest = function(track, artist, callback, send){
+    console.log(track);
+    console.log(artist);
     var url = "https://www.googleapis.com/youtube/v3/search";
     var properties = {
+        // channelId: id,
         key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg', //Use the API key to authorize the search
         q: 'karaoke ' + artist + track, //Specifies the query term to search for
         part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
@@ -23,37 +31,45 @@ var request = require('request');
         maxResults: 3, //maximim number of results
         format: 'json'
       }
+      console.log('inside of videoRequest');
+      request.get({url : url, qs : properties}, function(error, response, json){
+        if(error){
+          console.log(error);
+        };
+        if (!error) {
+          console.log('no error');
+          var requestJson  = JSON.parse(json);
+        }
+        callback(requestJson, send);
+      });
+  }
 
-    console.log('inside of videoFetch');
+  var videoConstruct = function(data, send){
     videos.length = 0;
-    request.get({url : url, qs : properties}, function(error, response, json){
-      if(error){
-        console.log(error);
-      };
-      if (!error) {
-        console.log('no error');
-        json  = JSON.parse(json);
-        // console.log(json.items);
-        for (i = 0 ; i < json.items.length; i ++){
-          console.log(json.items[i].snippet);
+    console.log('inside video construct')
+    // console.log(data);
+    for (i = 0 ; i < data.items.length; i ++){
+        console.log(wordInString(data.items[i].snippet.title, 'karaoke'));
+        if (wordInString(data.items[i].snippet.title, 'karaoke')){
           var opts = {
-            title : json.items[i].snippet.title,
-            id : json.items[i].id.videoId,
-            image : json.items[i].snippet.thumbnails.high.url,
-            description : json.items[i].snippet.description
+            title : data.items[i].snippet.title,
+            id : data.items[i].id.videoId,
+            image : data.items[i].snippet.thumbnails.high.url,
+            description : data.items[i].snippet.description
           }
           var video = new Video(opts);
           videos.push(video);
-        };
-        callback(videos);
-      }
-    });
+        }
+      };
+      send(videos);
   }
 
-
+  var videoFetch = function(track , artist, send){
+      videoRequest(track , artist, videoConstruct, send);
+  }
 
   module.exports = {
     videoFetch : videoFetch,
-    videos : videos
-  }
+    videoRequest: videoRequest
+    }
 })();
