@@ -1,5 +1,5 @@
 (function(module){
-  var video = {};
+  var videoPlayer = {};
 
   var player;
    function onYouTubeIframeAPIReady(id) {
@@ -14,7 +14,7 @@
      });
    }
 
-  video.Ready = function(){
+  videoPlayer.Ready = function(){
   $('#video-list').on('click', '.video-image', function(){
     $('#video-list').empty()
     var id = $(this).parent('div , .video-details').attr('id');
@@ -28,10 +28,10 @@
      event.target.playVideo();
    }
 
-   video.initAll = function(){
-     video.Ready();
+   videoPlayer.initAll = function(){
+     videoPlayer.Ready();
    }
 
-  module.video = video;
+  module.videoPlayer = videoPlayer;
 
 })(window);

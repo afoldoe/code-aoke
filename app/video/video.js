@@ -1,25 +1,27 @@
 var request = require('request');
 
-
 (function(){
 
+  //////////// Helper functions /////////////
+  //////////////////////////////////////////
+  var wordInString = function(s, word){
+    return new RegExp( '\\b' + word + '\\b', 'i').test(s);
+  }
+
+  ///// Constructor and and API functions ///
+  //////////////////////////////////////////
   var Video = function(opts){
     this.title = opts.title,
     this.image = opts.image,
     this.id = opts.id,
     this.description = opts.description
   };
+
   var videos = [];
 
-
-  var wordInString = function(s, word){
-    return new RegExp( '\\b' + word + '\\b', 'i').test(s);
-  }
-
-
   var videoRequest = function(track, artist, callback, send){
-    console.log(track);
-    console.log(artist);
+    // console.log(track);
+    // console.log(artist);
     var url = "https://www.googleapis.com/youtube/v3/search";
     var properties = {
         // channelId: id,
@@ -64,6 +66,8 @@ var request = require('request');
       send(videos);
   }
 
+  /////// DRY code called at routes ///////
+  ////////////////////////////////////////
   var videoFetch = function(track , artist, send){
       videoRequest(track , artist, videoConstruct, send);
   }

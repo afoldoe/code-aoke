@@ -5,7 +5,23 @@ var request = require('request');
 
 (function(){
 
-///////   Helper functions /////
+//////////// Helper functions /////////////
+//////////////////////////////////////////
+var consoleLog = function(data){
+  console.log(data)
+}
+
+// var trackRandomize = function(track, send){
+//   for (;fetchResponse.length < 3;){
+//     var index = getRandomInt(tracks.length);
+//     var track = tracks[index];
+//     if(fetchResponse.indexOf(track) === -1){
+//       fetchResponse.push(track);
+//     }
+//   }
+//   send(fetchResponse);
+// }
+
 var wordInString = function(s, word){
   return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 }
@@ -20,14 +36,15 @@ var getRandomInt = function(max) {
   return Math.abs(Math.floor((Math.random() * max)));
 }
 
-////// variables ////
+/////////////// Variables ////////////////
+//////////////////////////////////////////
 var client_id = spotifyAPI.client_id;
 var client_secret = spotifyAPI.client_secret;
 var redirect_uri = spotifyAPI.redirect_uri;
 
-
 var tracks = [];
 var fetchResponse = [];
+
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
@@ -39,8 +56,8 @@ var authOptions = {
   json: true
 };
 
-///// constructor and and api functions ///
-
+///// Constructor and and API functions ///
+//////////////////////////////////////////
 var Track = function(opts){
   this.track = opts.track;
   this.artist = opts.artist;
@@ -51,7 +68,45 @@ var Track = function(opts){
   this.isExplicit = opts.isExplicit;
 }
 
-var trackConstructSend = function(data, send){
+var resultState;
+
+var videoCheck = function(data, callback, send){
+  var checkedVideos = [];
+  // var thatdata = data;
+  // console.log(data);
+  var url = "https://www.googleapis.com/youtube/v3/search";
+  for (i = 0 ; i < data.tracks.items.length; i ++){
+    var properties = {
+        key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg',
+        q: 'karaoke ' + data.tracks.items[i].artists[0].name + data.tracks.items[i].name,
+        part: 'snippet',
+        type: 'video',
+        videoEmbeddable: true,
+        maxResults: 3,
+        format: 'json'
+      }
+      console.log('inside of videoCheck');
+      request.get({url : url, qs : properties}, function(error, response, json){
+        if(error){
+          console.log(error);
+        };
+        if (!error) {
+          console.log('no error');
+          var videoJson  = JSON.parse(json);
+          for (i = 0 ; i < videoJson.items.length; i ++){
+            if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
+              console.log('true');
+              checkedVideos.push(data.tracks.items[i]);
+          }
+        }
+      }
+      console.log(checkedVideos);
+    });
+  }
+  // callback(checkedVideos, send);
+}
+
+var trackConstruct = function(data, send){
   tracks.length = 0;
   fetchResponse.length = 0;
   for (i = 0 ; i < data.tracks.items.length; i ++){
@@ -66,10 +121,11 @@ var trackConstructSend = function(data, send){
         isExplicit: data.tracks.items[i].explicit,
       }
       var track = new Track(opts);
-      // video.videoRequest(track.track, track.artist, consoleLog)
       tracks.push(track);
     };
   };
+  // trackRandomize(track, send);
+  // console.log(tracks);
   for (;fetchResponse.length < 3;){
     var index = getRandomInt(tracks.length);
     var track = tracks[index];
@@ -80,7 +136,7 @@ var trackConstructSend = function(data, send){
   send(fetchResponse);
 }
 
-var trackRequest = function(data, type, callback){
+var trackRequest = function(data, type, send){
   console.log('inside of trackRequest');
   console.log(data);
   request.post(authOptions, function(error, response, json){
@@ -94,14 +150,16 @@ var trackRequest = function(data, type, callback){
         json: true
       };
       request.get(options, function(error, response, json){
-        trackConstructSend(json, callback)
+        // videoCheck(json, trackConstruct, send);
+        trackConstruct(json, send);
       });
     }
   });
 };
 
 
-//// DRY code called at routes ///
+/////// DRY code called at routes ///////
+////////////////////////////////////////
 var genreFetch = function(genre, send){
   trackRequest(genre, 'genre', send);
 }
@@ -115,11 +173,9 @@ var termFetch = function(term, send) {
 }
 
 
-//this allows other parts of our application to access tracks and trackFetch
 module.exports = {
   genreFetch : genreFetch,
   yearFetch : yearFetch,
-  termFetch : termFetch,
-  tracks : tracks
+  termFetch : termFetch
 }
 })();
