@@ -54,7 +54,7 @@ main {
 img {
   height: 150px;
 }
-<<<<<<< HEAD
+
 
 
 /*KW MODULES FOR TRACKLIST*/
@@ -69,7 +69,6 @@ img {
 .track-details{
   width: 20em;
   margin: 0 5rem;
-  /*color: #555;*/
 }
 
 .track-image{
@@ -78,7 +77,6 @@ img {
 }
 
 .track-title{
-  position:relative;
   font-size: 2rem;
   margin: .5rem;
   border: #c8bfc7 2px solid;

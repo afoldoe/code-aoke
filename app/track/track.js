@@ -144,7 +144,7 @@ var yearFetch = function(year, send) {
     trackRequest(year, 'year', send);
 }
 var termFetch = function(term, send) {
-  trackRequest(term, '', send)
+  trackRequest(term, ' ' , send)
 }
 module.exports = {
   genreFetch : genreFetch,

@@ -31,7 +31,7 @@ var request = require('request');
         part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
         type: 'video', //Excludes playlists and channels from results
         videoEmbeddable: true, //Specifies only embeddable videos
-        maxResults: 3, //maximim number of results
+        maxResults: 15, //maximim number of results
         format: 'json'
       }
       console.log('inside of videoRequest');

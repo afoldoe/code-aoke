@@ -55,7 +55,7 @@ trackList.yearFetch = function(){
 trackList.termFetch = function(){
   $('#term-form').submit(function(e){
     e.preventDefault();
-    var inputTerm = $(this).find('input').val();
+    var inputTerm = $(this).find('input[type=text]').val();
     console.log(inputTerm);
     $.ajax({
       type: 'POST',
