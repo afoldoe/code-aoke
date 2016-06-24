@@ -73,6 +73,15 @@ trackList.termFetch = function(){
 }
 
 trackList.initAll = function(){
+  $(window).scroll(function() {
+    if($(window).scrollTop() < 100) {
+      $('nav').addClass('scrollDown');
+      $('nav').removeClass('scrollUp');
+    } else {
+      $('nav').removeClass('scrollDown');
+      $('nav').addClass('scrollUp');
+    }
+  });
   trackList.genreFetch();
   trackList.yearFetch();
   trackList.termFetch();

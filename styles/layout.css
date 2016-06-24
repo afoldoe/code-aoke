@@ -13,11 +13,16 @@ header i {
 header h1 {
   margin-top: 10rem;
 }
+#menuIcon {
+  position: fixed;
+  right: 2rem;;
+  top: 2rem;
+}
 
 @media only screen and (min-width: 900px) {
     header {
         background: url(https://67.media.tumblr.com/9343c939cb8629156ec1556da371c4cf/tumblr_n6o4tnX9Dl1t5r1mpo1_500.gif) no-repeat center center;
-        height: 90%;
+        height: 100%;
         transition: .5s;
         border-bottom: none;
 
@@ -26,6 +31,7 @@ header h1 {
     header h1 {
       display: none;
     }
+
     .container {
       margin: 0;
       width: 100%;

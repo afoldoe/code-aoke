@@ -1,23 +1,29 @@
 button {
-  /*font-size: 18px;
+  font-size: 18px;
   border: 2px solid #1B2347;
   opacity: .5;
-  background-color: #5AE28A;*/
+  background-color: #fff;
 }
 main {
   background-color: #373F51;
-
-
   vertical-align: middle;
   text-align: center;
   padding: 70px 0;
 
   height: 70%;
 }
+.scrollDown {
+    opacity: 0;
+    transition: all 2s ease;
+  }
+  .scrollUp {
+    opacity: 1;
+    transition: all 2s ease;
+  }
 #gameStart {
   margin: auto;
   text-align: center;
-    color: white;
+  color: white;
   /*width: 100%;*/
 }
 
@@ -36,7 +42,6 @@ main {
   color: #373F51;
   margin: auto;
 }
-
 #about {
   vertical-align: middle;
   text-align: center;
@@ -49,4 +54,9 @@ main {
 
 img {
   height: 150px;
+}
+@media only screen and (min-width: 900px) {
+  #startButton {
+    margin-top: 10rem;
+  }
 }
