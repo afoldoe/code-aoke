@@ -16,7 +16,6 @@
         $('nav').addClass('scrollUp');
       }
     });
-
   };
 
   $('#startButton').on('click', controller.gameStartController);
