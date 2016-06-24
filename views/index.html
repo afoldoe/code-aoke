@@ -74,7 +74,6 @@
                   <option value="rock">Rock</option>
                   <option value="hip-hop"> Hip-Hop</option>
                   <option value="country"> Country</option>
-                  <option value="indie"> Indie</option>
                   <option value="metal"> Metal</option>
                   <option value="pop"> Pop</option>
                   <option value="punk"> Punk</option>
@@ -114,7 +113,11 @@
         </div>
       </div>
     </section>
+
     <section id="track-list">
+    </section>
+
+    <section id="video-list">
     </section>
 
     <div id='player'>
@@ -146,30 +149,13 @@
   <script>
   trackList.initAll();
   controller.navHandler();
+  <script src="/scripts/videoList.js"></script>
+  <script src="/scripts/videoPlayer.js"></script>
+  <script>
+    trackList.initAll();
+    videoList.initAll();
+    videoPlayer.initAll();
+  </script>
 
-
-/// ------- experiment with server youtube API call --------- ////
-    $('#track-list').on('click', '.track' , function(e){
-      console.log($(this).text());
-      var trackTitle = $(this).text();
-      var trackArtist = $(this).siblings('.track-artist').text();
-      console.log(trackArtist);
-      console.log('works')
-      $.ajax({
-        type: 'POST',
-        url: '/video',
-        data: {
-          track : trackTitle,
-          artist : trackArtist
-        }
-      })
-      .then(function(data){
-        data.forEach(function(track){
-        console.log(track);
-        })
-      })
-    });
-  /// ------- experiment with server youtube API call --------- ////
-</script>
 </body>
 </html>
