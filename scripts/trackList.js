@@ -72,8 +72,21 @@ trackList.termFetch = function(){
     })
   });
 }
+trackList.showVideos = function() {
+  $('.filterButton').on('click', function() {
+      $('#about').hide();
+    $('header').slideUp('slow', function() {
+      $('#song-filter').slideUp('slow', function() {
+        $('html, body').animate({
+           scrollTop: $("#track-list").offset().top
+           }, 2000);
+      });
+    });
+  });
+};
 
 trackList.initAll = function(){
+  trackList.showVideos();
   trackList.genreFetch();
   trackList.yearFetch();
   trackList.termFetch();
