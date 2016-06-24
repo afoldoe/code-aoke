@@ -1,3 +1,7 @@
+fieldset {
+  display: none;
+}
+
 
 #gameStart button:hover {
   background-color: #5AE28A;
