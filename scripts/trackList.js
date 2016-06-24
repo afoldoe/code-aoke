@@ -67,6 +67,7 @@ trackList.termFetch = function(){
     .then(function(data){
       data.forEach(function(track){
         trackList.toHtml(track);
+        console.log(track);
       })
     })
   });

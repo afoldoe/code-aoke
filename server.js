@@ -27,6 +27,7 @@ app.get('/', function(req, res){
 app.post('/genreTracks', function(req, res){
   console.log('inside of /tracks get')
   var genre = req.body.genre;
+  console.log(genre);
   var send = function(data){
     res.send(data);
   }
