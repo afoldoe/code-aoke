@@ -2,9 +2,7 @@
 var spotifyAPI = require('../../config/spotify_api.js');
 var video = require('../video/video.js');
 var request = require('request');
-
 (function(){
-
 //////////// Helper functions /////////////
 //////////////////////////////////////////
 
@@ -18,30 +16,24 @@ var request = require('request');
 //   }
 //   send(fetchResponse);
 // }
-
 var wordInString = function(s, word){
   return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 }
-
 var millisToMinutesAndSeconds = function(millis) {
   var minutes = Math.floor(millis / 60000);
   var seconds = ((millis % 60000) / 1000).toFixed(0);
   return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
-
 var getRandomInt = function(max) {
   return Math.abs(Math.floor((Math.random() * max)));
 }
-
 /////////////// Variables ////////////////
 //////////////////////////////////////////
 var client_id = spotifyAPI.client_id;
 var client_secret = spotifyAPI.client_secret;
 var redirect_uri = spotifyAPI.redirect_uri;
-
 var tracks = [];
 var fetchResponse = [];
-
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
@@ -52,7 +44,6 @@ var authOptions = {
   },
   json: true
 };
-
 ///// Constructor and and API functions ///
 //////////////////////////////////////////
 var Track = function(opts){
@@ -64,9 +55,7 @@ var Track = function(opts){
   this.artistHref = opts.artistHref;
   this.isExplicit = opts.isExplicit;
 }
-
 var resultState;
-
 var videoCheck = function(data, callback, send){
   var checkedVideos = [];
   var url = "https://www.googleapis.com/youtube/v3/search";
@@ -100,7 +89,6 @@ var videoCheck = function(data, callback, send){
   }
   // callback(checkedVideos, send);
 }
-
 var trackConstruct = function(data, send){
   tracks.length = 0;
   fetchResponse.length = 0;
@@ -128,7 +116,6 @@ var trackConstruct = function(data, send){
   }
   send(fetchResponse);
 }
-
 var trackRequest = function(data, type, send){
   console.log('inside of trackRequest');
   request.post(authOptions, function(error, response, json){
@@ -148,23 +135,17 @@ var trackRequest = function(data, type, send){
     }
   });
 };
-
-
 /////// DRY code called at routes ///////
 ////////////////////////////////////////
 var genreFetch = function(genre, send){
   trackRequest(genre, 'genre', send);
 }
-
 var yearFetch = function(year, send) {
     trackRequest(year, 'year', send);
 }
-
 var termFetch = function(term, send) {
   trackRequest(term, '', send)
 }
-
-
 module.exports = {
   genreFetch : genreFetch,
   yearFetch : yearFetch,
