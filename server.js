@@ -3,7 +3,7 @@ var request = require('request');
 var bodyParser = require('body-parser');
 //needs track js functions for retrieving spotifyAPI data.
 var track = require('./app/track/track.js');
-// var video = require('./app/video/video.js');
+var video = require('./app/video/video.js');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -56,7 +56,7 @@ app.post('/video', function(req, res){
   var send = function(data){
     res.send(data);
   }
-  track.videoFetch(req.body.track , req.body.artist , send);
+  video.videoFetch(req.body.track , req.body.artist , send);
 });
 
 

@@ -3,7 +3,7 @@ var trackList = {};
 
 trackList.toHtml = function(track){
   $('#track-list').empty();
-  getCompiledTemplate("track").then(function(handlebarsCompile){
+  getCompiledTemplate('track').then(function(handlebarsCompile){
     // console.log(handlebarsCompile);
     var html = handlebarsCompile(track);
     // console.log(html);
@@ -27,7 +27,7 @@ trackList.genreFetch = function(){
     .then(function(data){
       data.forEach(function(track){
         trackList.toHtml(track);
-        // console.log(track);
+        console.log(track);
       })
     })
   });

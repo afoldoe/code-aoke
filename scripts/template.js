@@ -1,5 +1,6 @@
 (function(module){
   function getCompiledTemplate(name){
+    console.log(name);
     console.log('inside of getCompiledTemplate');
     return $.ajax({
       type: 'GET',
