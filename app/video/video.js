@@ -1,32 +1,79 @@
 var request = require('request');
-var youTubeAPI = require('../../config/youtube_api.js');
-
 
 (function(){
 
-  var client_id = youTubeAPI.yt_client_id;
-  var client_secret = youTubeAPI.yt_client_secret;
-  var redirect_uri = youTubeAPI.yt_redirect_uri;
+  //////////// Helper functions /////////////
+  //////////////////////////////////////////
+  var wordInString = function(s, word){
+    return new RegExp( '\\b' + word + '\\b', 'i').test(s);
+  }
 
+  ///// Constructor and and API functions ///
+  //////////////////////////////////////////
+  var Video = function(opts){
+    this.title = opts.title,
+    this.image = opts.image,
+    this.id = opts.id,
+    this.description = opts.description
+  };
 
-  var url = 'https://accounts.google.com/o/oauth2/auth?client_id=' + client_id + '&redirect_uri=' + redirect_uri + '&scope=https://www.googleapis.com/auth/youtube&response_type=code&access_type=offline'
+  var videos = [];
 
-
-  var videoFetch = function(){
-    console.log('inside of videoFetch');
-    request.post(url, function(error, response, json){
-      if(error){
-        console.log(error);
-      };
-      if (!error) {
-        console.log(response.headers);
-        // console.log(response);
+  var videoRequest = function(track, artist, callback, send){
+    // console.log(track);
+    // console.log(artist);
+    var url = "https://www.googleapis.com/youtube/v3/search";
+    var properties = {
+        // channelId: id,
+        key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg', //Use the API key to authorize the search
+        q: 'karaoke ' + artist + track, //Specifies the query term to search for
+        part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
+        type: 'video', //Excludes playlists and channels from results
+        videoEmbeddable: true, //Specifies only embeddable videos
+        maxResults: 3, //maximim number of results
+        format: 'json'
       }
-      // callback();
-    });
+      console.log('inside of videoRequest');
+      request.get({url : url, qs : properties}, function(error, response, json){
+        if(error){
+          console.log(error);
+        };
+        if (!error) {
+          console.log('no error');
+          var requestJson  = JSON.parse(json);
+        }
+        callback(requestJson, send);
+      });
+  }
+
+  var videoConstruct = function(data, send){
+    videos.length = 0;
+    console.log('inside video construct')
+    // console.log(data);
+    for (i = 0 ; i < data.items.length; i ++){
+        console.log(wordInString(data.items[i].snippet.title, 'karaoke'));
+        if (wordInString(data.items[i].snippet.title, 'karaoke')){
+          var opts = {
+            title : data.items[i].snippet.title,
+            id : data.items[i].id.videoId,
+            image : data.items[i].snippet.thumbnails.high.url,
+            description : data.items[i].snippet.description
+          }
+          var video = new Video(opts);
+          videos.push(video);
+        }
+      };
+      send(videos);
+  }
+
+  /////// DRY code called at routes ///////
+  ////////////////////////////////////////
+  var videoFetch = function(track , artist, send){
+      videoRequest(track , artist, videoConstruct, send);
   }
 
   module.exports = {
     videoFetch : videoFetch,
-  }
+    videoRequest: videoRequest
+    }
 })();

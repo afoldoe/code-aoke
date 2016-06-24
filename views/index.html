@@ -49,10 +49,6 @@
        <br>
        <div class="container">
 
-         <!--- experiment with server youtube API call  ------->
-       <button id="video"> Video</button>
-       <!--- experiment with server youtube API call  ------->
-
          <div class="row">
             <div class="four columns">
               <form id="genre-form" name="genre">
@@ -64,7 +60,6 @@
                   <option value="rock">Rock</option>
                   <option value="hip-hop"> Hip-Hop</option>
                   <option value="country"> Country</option>
-                  <option value="indie"> Indie</option>
                   <option value="metal"> Metal</option>
                   <option value="pop"> Pop</option>
                   <option value="punk"> Punk</option>
@@ -109,8 +104,15 @@
         </div>
       </div>
     </section>
+
     <section id="track-list">
     </section>
+
+    <section id="video-list">
+    </section>
+
+    <div id='player'>
+    </div>
 
     <section id="about">
       <h3>Meet the Code-aoke Team!</h3>
@@ -131,28 +133,18 @@
   <script src="https://use.fonticons.com/2c3b87aa.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/scripts/template.js"></script>
   <script src="/scripts/trackList.js"></script>
   <script src="/scripts/filterController.js"></script>
+  <script src="/scripts/videoList.js"></script>
+  <script src="/scripts/videoPlayer.js"></script>
   <script>
-  trackList.initAll();
+    trackList.initAll();
+    videoList.initAll();
+    videoPlayer.initAll();
+  </script>
 
 
-/// ------- experiment with server youtube API call --------- ////
-    $('#video').on('click', function(e){
-      e.preventDefault();
-      console.log('works')
-      $.ajax({
-        type: 'POST',
-        url: '/video',
-      })
-      .then(function(data){
-        data.forEach(function(track){
-        console.log(track);
-        })
-      })
-    });
-  /// ------- experiment with server youtube API call --------- ////
-</script>
 </body>
 </html>
