@@ -16,9 +16,9 @@
       <div class="row">
         <div class="twelve columns">
           <ul>
-            <li>Home</li>
+            <li><a>Home</a></li>
             <li><a id="gameStartNav" href="#gameStart">Game Start</a></li>
-            <li>About</li>
+            <li><a>About</a></li>
           </ul>
         </div>
         <i id="menuIcon" class="fa fa-2x fa-bars"><span></span></i>
@@ -139,12 +139,13 @@
   <script src="https://use.fonticons.com/2c3b87aa.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-  <script src="/scripts/controller.js"></script>
+  <script src="/scripts/landingController.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/scripts/template.js"></script>
   <script src="/scripts/trackList.js"></script>
   <script>
   trackList.initAll();
+  controller.navHandler();
 
 
 /// ------- experiment with server youtube API call --------- ////

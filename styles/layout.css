@@ -18,6 +18,13 @@ header h1 {
   right: 2rem;;
   top: 2rem;
 }
+#nav {
+  z-index: 5;
+}
+#nav a {
+  text-decoration: none;
+  color: #1B2347;
+}
 
 @media only screen and (min-width: 900px) {
     header {
@@ -43,7 +50,6 @@ header h1 {
       position: fixed;
       top: 1rem;
       left: 1rem;
-      border-bottom: solid #1B2347 5px;
       padding-bottom: 1rem;
     }
     #nav li {

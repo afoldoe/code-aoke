@@ -8,6 +8,12 @@
   transition: .5s;
   opacity: 1;
 }
+#nav a:hover {
+  color: #C8BFC7;
+  transition: .5s;
+  border-bottom: 3px solid #C8BFC7;
+
+}
 
 #song-select{
   text-align: center;
