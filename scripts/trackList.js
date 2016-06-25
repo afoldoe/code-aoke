@@ -36,6 +36,7 @@ trackList.genreFetch = function(){
 trackList.yearFetch = function(){
   $('#year-form').submit(function(e){
     e.preventDefault();
+    // console.log($(this));
     var selectYear = $(this).find('#year-select , option:selected').val();
     console.log(selectYear);
     $.ajax({
