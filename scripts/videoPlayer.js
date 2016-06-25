@@ -16,7 +16,7 @@
       'CREATE TABLE IF NOT EXISTS favorites (' +
       'id INTEGER PRIMARY KEY, ' +
       'title VARCHAR (50), ' +
-      'ytID VARCHAR (50));', // what SQL command do we run here inside these quotes?
+      'url VARCHAR (50));', // what SQL command do we run here inside these quotes?
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -28,7 +28,7 @@
     webDB.execute(
       [
         {
-          'sql': 'INSERT INTO favorites (title, ytID) VALUES(?, ?);',
+          'sql': 'INSERT INTO favorites (title, url) VALUES(?, ?);',
           'data': [title, video_id],
         }
       ],
@@ -69,12 +69,12 @@
     webDB.execute('SELECT * FROM favorites', function(rows) {
       if(rows.length) {
         rows.forEach(function(song) {
-          videoPlayer.favoriteToHtml(song);
           var songTitle = song.title;
           var songID = song.ytID;
           var songURL = 'https://www.youtube.com/watch?' + songID;
           console.log(songURL);
           console.log(songTitle);
+          videoPlayer.favoriteToHtml(song);
 
         });
       }
@@ -84,6 +84,7 @@
   videoPlayer.favoriteToHtml = function(song) {
     getCompiledTemplate('favorite').then(function(handlebarsCompile){
       // console.log(handlebarsCompile);
+
       var html = handlebarsCompile(song);
       // console.log(html);
       $('#favorites').append(html);
