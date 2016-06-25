@@ -2,6 +2,7 @@
 var spotifyAPI = require('../../config/spotify_api.js');
 var video = require('../video/video.js');
 var request = require('request');
+var rp = require('request-promise');
 (function(){
 
 var wordInString = function(s, word){
@@ -22,6 +23,7 @@ var client_secret = spotifyAPI.client_secret;
 var redirect_uri = spotifyAPI.redirect_uri;
 var tracks = [];
 var fetchResponse = [];
+var checkedVideos = [];
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
@@ -44,76 +46,102 @@ var Track = function(opts){
   this.isExplicit = opts.isExplicit;
 }
 
-// var videoCheck = function(data, callback, send){
-//   var checkedVideos = [];
-//   var url = "https://www.googleapis.com/youtube/v3/search";
-//   for (i = 0 ; i < data.tracks.items.length; i ++){
-//     var properties = {
-//         key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg',
-//         q: 'karaoke ' + data.tracks.items[i].artists[0].name + data.tracks.items[i].name,
-//         part: 'snippet',
-//         type: 'video',
-//         videoEmbeddable: true,
-//         maxResults: 3,
-//         format: 'json'
-//       }
-//       console.log('inside of videoCheck');
-//       request.get({url : url, qs : properties}, function(error, response, json){
-//         if(error){
-//           console.log(error);
-//         };
-//         if (!error) {
-//           console.log('no error');
-//           var videoJson  = JSON.parse(json);
-//           for (i = 0 ; i < videoJson.items.length; i ++){
-//             if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
-//               console.log('true');
-//               checkedVideos.push(data.tracks.items[i]);
-//           }
-//         }
-//       }
-//       console.log(checkedVideos);
-//     });
-//   }
-//   // callback(checkedVideos, send);
-// }
+var videoCheck = function(data, callback, send){
+  checkedVideos.length = 0;
+  var promisesAll = [];
+  console.log(data.tracks.items.length);
+  var url = "https://www.googleapis.com/youtube/v3/search";
+  for (i = 0 ; i < data.tracks.items.length; i ++){
+    // console.log(data.tracks.items[i].name);
+    var properties = {
+        key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg',
+        q: 'karaoke ' + data.tracks.items[i].artists[0].name + data.tracks.items[i].name,
+        part: 'snippet',
+        type: 'video',
+        videoEmbeddable: true,
+        maxResults: 3,
+        format: 'json'
+      }
+      // console.log('inside of videoCheck');
+      var p = new Promise(function(resolve, reject){
+          rp.get({url : url, qs : properties}, function(error, response, json){
+          if(error){
+            console.log(error);
+          };
+          if (!error) {
+            // console.log('no error');
+            var videoJson  = JSON.parse(json);
+            for (i = 0 ; i < videoJson.items.length; i ++){
+              if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
+                console.log(data.tracks.items[i].name);
+                checkedVideos.push(data.tracks.items[i]);
+                return;
+            }
+            // return;
+          }
+        }
+        // console.log(checkedVideos);
+      }).then(function(){
+        // console.log('rp finished');
+        resolve('success!')
+      });
+    })
+    promisesAll.push(p);
+  }
+  // console.log(promisesAll);
+
+  Promise.all(promisesAll).then(function(){
+    console.log('Promise All Finished')
+    // console.log(checkedVideos);
+    callback(checkedVideos, send);
+  });
+}
 
 
 var trackConstruct = function(data, send){
+  // console.log(data);
   console.log('inside trackConstruct')
   fetchResponse = [];
   tracks.length = 0;
   fetchResponse.length = 0;
-  console.log(data.tracks.items.length);
-  for (i = 0 ; i < data.tracks.items.length; i ++){
-    // console.log(data.tracks.items[i]);
-    if (data.tracks.items[i].popularity > 50){
-      // console.log(data.tracks.items[i]);
+  // console.log(data.tracks.items.length);
+  for (i = 0 ; i < data.length; i ++){
+    // console.log(data[i].name);
+    if (data[i].popularity > 50){
       var opts = {
-        track: data.tracks.items[i].name,
-        artist: data.tracks.items[i].artists[0].name,
-        image: data.tracks.items[i].album.images[0].url,
-        album: data.tracks.items[i].album.name,
-        time: millisToMinutesAndSeconds(data.tracks.items[i].duration_ms),
-        artistHref: data.tracks.items[i].artists[0].href,
-        isExplicit: data.tracks.items[i].explicit,
+        track: data[i].name,
+        artist: data[i].artists[0].name,
+        image: data[i].album.images[0].url,
+        album: data[i].album.name,
+        time: millisToMinutesAndSeconds(data[i].duration_ms),
+        artistHref: data[i].artists[0].href,
+        isExplicit: data[i].explicit,
       }
       var track = new Track(opts);
       tracks.push(track);
     };
   };
+  console.log(tracks.length);
   if (!tracks.length){
     console.log('ZERO')
     fetchResponse = null
     send(fetchResponse);
   }
+  // console.log(tracks);
+  var index;
+  var track;
   if (tracks.length){
     console.log('LENGTH');
     for (;fetchResponse.length < 3;){
-      var index = getRandomInt(tracks.length);
-      var track = tracks[index];
+      index = getRandomInt(tracks.length);
+      // console.log(index);
+      track = tracks[index];
+      // console.log(track);
+      // console.log(fetchResponse);
       if(fetchResponse.indexOf(track) === -1){
+        // console.log(track);
         fetchResponse.push(track);
+        // return
       }
     }
     send(fetchResponse);
@@ -136,8 +164,8 @@ var trackRequest = function(data, type, send){
       request.get(options, function(error, response, json){
         // console.log(error);
         // console.log(json);
-        // videoCheck(json, trackConstruct, send);
-        trackConstruct(json, send);
+        videoCheck(json, trackConstruct, send);
+        // trackConstruct(json, send);
       });
     }
   });
