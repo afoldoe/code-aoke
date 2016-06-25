@@ -45,25 +45,6 @@ var Track = function(opts){
   this.isExplicit = opts.isExplicit;
 }
 
-// var videoCheckRequest = function(properties){
-//   return rp.get({url : url, qs : properties}, function(error, response, json){
-//     if(error){
-//       // console.log(error);
-//     };
-//     if (!error) {
-//       // console.log('no error');
-//       console.log(properties);
-//       var videoJson  = JSON.parse(json);
-//       for (i = 0 ; i < videoJson.items.length; i ++){
-//         if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
-//           checkedVideos.push(data.tracks.items[i]);
-//           break;
-//         }
-//       }
-//     }
-//   });
-// }
-
 // var videoCheck = function(data, callback, send){
 //   console.log('inside of videoCheck')
 //   var tracks = [];
@@ -94,19 +75,8 @@ var Track = function(opts){
 //       return rp.get(p);
 //     });
 //
-//     console.log(tracks[0].artists[0].name);
-//     console.log(tracks.length);
-//
-//         // p.then(function(response) {
-//         //   var videoJson  = JSON.parse(response);
-//         //   for (i = 0 ; i < videoJson.items.length; i ++){
-//             // if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
-//             //   // console.log(wordInString(videoJson.items[i].snippet.title, 'karaoke'));
-//             //   checkedTracks.push(data.tracks.items[i]);
-//             //   break;
-//             // }
-//         //   }
-//         // })
+//     // console.log(tracks[0].artists[0].name);
+//     // console.log(tracks.length);
 //
 //   Promise.all(myPromises).then(function(data){
 //     console.log('Promise All Finished')
@@ -118,20 +88,20 @@ var Track = function(opts){
 //         var title = json.items[i].snippet.title;
 //         titlesArray.push(title);
 //       }
-//       console.log(titlesArray);
+//       // console.log(titlesArray);
 //     })
 //     for (i = 0 ; i < tracks.length; i ++){
 //       console.log('inside of tracks.length loop');
 //       // var currentTrack = tracks[i];
-//       console.log(currentTrack);
-//       // for(i = 0 ; i < titlesArray.length; i ++){
+//       // console.log(currentTrack);
+//       for(i = 0 ; i < titlesArray.length; i ++){
 //       //   console.log('inside of titlesArray.length loop');
 //
-//         // console.log(titlesArray[i].indexOf('karaoke'));
-//         // if (titlesArray.indexOf('karaoke') > -1){
-//         //   console.log('true');
-//         // }
-//     // }
+//         console.log(titlesArray[i].indexOf('karaoke'));
+//         if (titlesArray.indexOf('karaoke') > -1){
+//           console.log('true');
+//         }
+//     }
 //   }
 //     // callback(checkedTracks, send);
 //   });
@@ -194,7 +164,9 @@ var trackRequest = function(data, type, send){
         json: true
       };
       request.get(options, function(error, response, json){
+        // videoCheck(json, trackConstruct, send);
         trackConstruct(json, send);
+
       });
     }
   });
