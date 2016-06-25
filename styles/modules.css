@@ -37,7 +37,7 @@ main {
   text-align: center;
   padding: 70px 0;
 
-  height: 70%;
+  height: 50%;
   color: #373F51;
   margin: auto;
 }
@@ -46,13 +46,20 @@ main {
   text-align: center;
   padding: 70px 0;
 
-  height: 50%;
+  height: 30%;
   color: #373F51;
   margin: auto;
+  color: #373F51;
 }
 
 img {
-  height: 150px;
+  height: 200px;
+  border-radius: 50%;
+  border:5px solid #373F51;
+}
+
+#names {
+  font-size: 20px;
 }
 
 
