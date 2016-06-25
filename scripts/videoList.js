@@ -3,7 +3,7 @@
   var videoList = {};
 
   videoList.toHtml = function(track){
-    $('#track-list').empty();
+    // $('#track-list').empty();
     getCompiledTemplate("video").then(function(handlebarsCompile){
       // console.log(handlebarsCompile);
       var html = handlebarsCompile(track);
@@ -36,8 +36,20 @@
     });
   }
   videoList.initAll = function(){
-    videoList.fetchAll()
+    videoList.fetchAll();
+    videoList.showVideos();
   }
+  videoList.showVideos = function() {
+    $('#track-list').on('click', '.track' , function(e){
+      $('#track-list').slideUp(3000, function() {
+        $('html, body').animate({
+           scrollTop: $("#video-list").offset().top
+           }, 2000);
+           $('#track-list').empty();
+         });
+      console.log('slide slide');
+    });
+  };
 
   module.videoList = videoList;
 

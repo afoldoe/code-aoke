@@ -72,11 +72,11 @@ trackList.termFetch = function(){
     })
   });
 }
-trackList.showVideos = function() {
+trackList.showTracks = function() {
   $('.filterButton').on('click', function() {
       $('#about').hide();
     $('header').slideUp('slow', function() {
-      $('#song-filter').slideUp('slow', function() {
+      $('#song-filter').slideUp(3000, function() {
         $('html, body').animate({
            scrollTop: $("#track-list").offset().top
            }, 2000);
@@ -86,7 +86,7 @@ trackList.showVideos = function() {
 };
 
 trackList.initAll = function(){
-  trackList.showVideos();
+  trackList.showTracks();
   trackList.genreFetch();
   trackList.yearFetch();
   trackList.termFetch();
