@@ -55,25 +55,41 @@ trackList.yearFetch = function(){
 trackList.termFetch = function(){
   $('#term-form').submit(function(e){
     e.preventDefault();
-    var inputTerm = $(this).find('input').val();
+    var inputTerm = $(this).find('input[type=text]').val();
     console.log(inputTerm);
     $.ajax({
       type: 'POST',
       url: '/termTracks',
       data: {
         'term' : inputTerm
+      },
+      success: function(data, error, xhr){
+        data.forEach(function(track){
+            trackList.toHtml(track);
+            console.log(track);
+          });
+      },
+      error: function(data, error, xhr){
+        alert('Sorry, please choose another track, your search had no results')
       }
-    })
-    .then(function(data){
-      data.forEach(function(track){
-        trackList.toHtml(track);
-        console.log(track);
-      })
     })
   });
 }
+trackList.showVideos = function() {
+  $('.filterButton').on('click', function() {
+      $('#about').hide();
+    $('header').slideUp('slow', function() {
+      $('#song-filter').slideUp('slow', function() {
+        $('html, body').animate({
+           scrollTop: $("#track-list").offset().top
+           }, 2000);
+      });
+    });
+  });
+};
 
 trackList.initAll = function(){
+  trackList.showVideos();
   trackList.genreFetch();
   trackList.yearFetch();
   trackList.termFetch();
