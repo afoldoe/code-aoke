@@ -19,6 +19,7 @@
     });
   };
 
+
   $('#startButton').on('click', controller.gameStartController);
   $('#gameStartNav').on('click', controller.gameStartController);
   module.controller = controller;
