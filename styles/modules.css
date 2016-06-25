@@ -54,6 +54,79 @@ main {
 img {
   height: 150px;
 }
+
+
+
+/*KW MODULES FOR TRACKLIST*/
+#track-list{
+  margin: 4rem 1rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.track-details{
+  width: 20em;
+  margin: 0 5rem;
+}
+
+.track-image{
+  max-width: 30rem;
+  height: auto;
+}
+
+.track-title{
+  font-size: 2rem;
+  margin: .5rem;
+  border: #c8bfc7 2px solid;
+  border-radius: 4px;
+  -webkit-transition : border .5s , background-color .5s;
+}
+
+.track-title:hover{
+  background-color: #C8BFC7;
+  cursor: pointer;
+  color: #fff;
+  border-color: #555;
+}
+
+
+#video-list{
+  margin: 4rem 1rem;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.video-details{
+  width: 70%;
+  margin: 0 auto;
+  /*color: #555;*/
+}
+
+.video-title{
+  position:relative;
+  /*font-size: 2rem;*/
+  margin: .5rem;
+  margin-bottom: 2rem;
+  padding: .5rem 1rem;
+  border-bottom: #c8bfc7 2px solid;
+  border-radius: 4px;
+}
+
+
+.video-image{
+  max-width: 40rem;
+  height: auto;
+}
+
+.video-image:hover{
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 900px) {
   #startButton {
     margin-top: 10rem;
