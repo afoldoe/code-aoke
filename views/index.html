@@ -56,64 +56,62 @@
       </div> -->
 
       <section id="song-filter">
+       <br><br>
        <h4>Pick your poison! Filter by genre, time period, or get specific with term search.</h4>
-       <br>
-       <div class="container">
+       <br><br>
 
-         <div class="row">
-            <div class="four columns">
-              <form id="genre-form" name="genre">
+       <!-- <div class="container" > -->
+         <!-- <div class="row"> -->
+            <!-- <div class="four columns"> -->
+                <form id="genre-form" name="genre">
                 <input id="genre-filter" type="button" value="Filter by Genre">
-                <fieldset id="genre">
-                <h5>Genres</h5>
-                <select id="genre-select" name="genre"><br>
-                  <option value="all">--Select Genre--</option>
-                  <option value="rock">Rock</option>
-                  <option value="hip-hop"> Hip-Hop</option>
-                  <option value="country"> Country</option>
-                  <option value="metal"> Metal</option>
-                  <option value="pop"> Pop</option>
-                  <option value="punk"> Punk</option>
-                  <option value="soul"> Soul</option>
-                  <option value="rap"> Rap</option>
-                </select><br>
-                <input id="genre-submit" class="filterButton" type="submit" value="Submit">
+                <fieldset id="genre2">
+                  <h5>Genres</h5>
+                  <select id="genre-select" name="genre"><br>
+                    <option value="all">--Select Genre--</option>
+                    <option value="rock">Rock</option>
+                    <option value="hip-hop"> Hip-Hop</option>
+                    <option value="country"> Country</option>
+                    <option value="metal"> Metal</option>
+                    <option value="pop"> Pop</option>
+                    <option value="punk"> Punk</option>
+                    <option value="soul"> Soul</option>
+                    <option value="rap"> Rap</option>
+                  </select><br>
+                  <input id="genre-submit" class="filterButton" type="submit" value="Submit">
                 </fieldset>
               </form>
-            </div>
+            <!-- </div> -->
 
-            <div class="four columns">
+            <!-- <div class="four columns"> -->
               <form id="year-form">
                 <input id="year-filter" type="button" value="Filter by Year">
                 <fieldset id="year">
-
                   <h5>Time Period</h5>
-                  <select id="year-select" name="year"><br>
+                  <select id="year-select" name="year">
                     <option value="">--Select Decade--</option>
                     <option value="2000-2010">2000-2010</option>
                     <option value="1990-2000">1990-2000</option>
                     <option value="1980-1990">1980-1990</option>
                     <option value="1970-1980">1970-1980</option>
                     <option value="1960-1970">1960-1970</option>
-                  </select>
+                  </select><br>
                     <input id="year-submit" class="filterButton" type="submit" value="Submit">
                 </fieldset>
-
               </form>
-            </div>
-          <div class="four columns">
+            <!-- </div> -->
+          <!-- <div class="four columns"> -->
             <form id="term-form">
               <input id="term-filter" type="button" value="Filter by Term">
               <fieldset id="term-select">
                 <h5>Term Search</h5>
-                <input type="text" value="Enter Term"/>
+                <input type="text" value="Enter Term"/><br>
                 <input id="term-submit" class="filterButton" type="submit" value="Submit">
               </fieldset>
-
             </form>
-          </div>
-        </div>
-      </div>
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
     </section>
 
     <section id="track-list">
@@ -122,23 +120,26 @@
     <section id="video-list">
     </section>
 
-    <div id='player'>
+    <div id="player-container">
+      <div id='player'>
+      </div>
     </div>
+
 
     <section id="about">
       <h3>Meet the Code-aoke Team!</h3>
-        <div class="row">
+        <div id="about-pics" class="row">
           <div class="three columns"><img src="cb.jpg"></div>
           <div class="three columns"><img src="pic-af.jpeg"></div>
           <div class="about three columns"><img src="nr-project.jpg"></div>
           <div class="three columns"><img src="kw-pic.jpeg"></div>
         </div>
-      <div id="names" class="row">
+        <div id="names" class="row">
           <div class="three columns">Cass Burt</div>
           <div class="three columns">Arielle Foldoe</div>
           <div class="three columns">Nicholle Romero</div>
           <div class="three columns">Keenan Wells</div>
-      </div>
+        </div>
     </section>
 
   <script src="https://use.fonticons.com/2c3b87aa.js"></script>
