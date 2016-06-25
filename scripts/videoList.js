@@ -37,7 +37,7 @@
     videoList.showVideos();
   }
   videoList.showVideos = function() {
-    $('#track-list').on('click', '.track' , function(e){
+    $('#track-list').on('click', '.track-title' , function(e){
       $('#track-list').slideUp(3000, function() {
         $('html, body').animate({
            scrollTop: $("#video-list").offset().top
