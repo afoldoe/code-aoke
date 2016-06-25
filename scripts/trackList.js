@@ -62,13 +62,16 @@ trackList.termFetch = function(){
       url: '/termTracks',
       data: {
         'term' : inputTerm
+      },
+      success: function(data, error, xhr){
+        data.forEach(function(track){
+            trackList.toHtml(track);
+            console.log(track);
+          });
+      },
+      error: function(data, error, xhr){
+        alert('Sorry, please choose another track, your search had no results')
       }
-    })
-    .then(function(data){
-      data.forEach(function(track){
-        trackList.toHtml(track);
-        console.log(track);
-      })
     })
   });
 }

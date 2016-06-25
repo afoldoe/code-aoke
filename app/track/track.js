@@ -3,19 +3,7 @@ var spotifyAPI = require('../../config/spotify_api.js');
 var video = require('../video/video.js');
 var request = require('request');
 (function(){
-//////////// Helper functions /////////////
-//////////////////////////////////////////
 
-// var trackRandomize = function(track, send){
-//   for (;fetchResponse.length < 3;){
-//     var index = getRandomInt(tracks.length);
-//     var track = tracks[index];
-//     if(fetchResponse.indexOf(track) === -1){
-//       fetchResponse.push(track);
-//     }
-//   }
-//   send(fetchResponse);
-// }
 var wordInString = function(s, word){
   return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 }
@@ -55,45 +43,52 @@ var Track = function(opts){
   this.artistHref = opts.artistHref;
   this.isExplicit = opts.isExplicit;
 }
-var resultState;
-var videoCheck = function(data, callback, send){
-  var checkedVideos = [];
-  var url = "https://www.googleapis.com/youtube/v3/search";
-  for (i = 0 ; i < data.tracks.items.length; i ++){
-    var properties = {
-        key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg',
-        q: 'karaoke ' + data.tracks.items[i].artists[0].name + data.tracks.items[i].name,
-        part: 'snippet',
-        type: 'video',
-        videoEmbeddable: true,
-        maxResults: 3,
-        format: 'json'
-      }
-      console.log('inside of videoCheck');
-      request.get({url : url, qs : properties}, function(error, response, json){
-        if(error){
-          console.log(error);
-        };
-        if (!error) {
-          console.log('no error');
-          var videoJson  = JSON.parse(json);
-          for (i = 0 ; i < videoJson.items.length; i ++){
-            if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
-              console.log('true');
-              checkedVideos.push(data.tracks.items[i]);
-          }
-        }
-      }
-      console.log(checkedVideos);
-    });
-  }
-  // callback(checkedVideos, send);
-}
+
+// var videoCheck = function(data, callback, send){
+//   var checkedVideos = [];
+//   var url = "https://www.googleapis.com/youtube/v3/search";
+//   for (i = 0 ; i < data.tracks.items.length; i ++){
+//     var properties = {
+//         key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg',
+//         q: 'karaoke ' + data.tracks.items[i].artists[0].name + data.tracks.items[i].name,
+//         part: 'snippet',
+//         type: 'video',
+//         videoEmbeddable: true,
+//         maxResults: 3,
+//         format: 'json'
+//       }
+//       console.log('inside of videoCheck');
+//       request.get({url : url, qs : properties}, function(error, response, json){
+//         if(error){
+//           console.log(error);
+//         };
+//         if (!error) {
+//           console.log('no error');
+//           var videoJson  = JSON.parse(json);
+//           for (i = 0 ; i < videoJson.items.length; i ++){
+//             if (wordInString(videoJson.items[i].snippet.title, 'karaoke')){
+//               console.log('true');
+//               checkedVideos.push(data.tracks.items[i]);
+//           }
+//         }
+//       }
+//       console.log(checkedVideos);
+//     });
+//   }
+//   // callback(checkedVideos, send);
+// }
+
+
 var trackConstruct = function(data, send){
+  console.log('inside trackConstruct')
+  fetchResponse = [];
   tracks.length = 0;
   fetchResponse.length = 0;
+  console.log(data.tracks.items.length);
   for (i = 0 ; i < data.tracks.items.length; i ++){
+    // console.log(data.tracks.items[i]);
     if (data.tracks.items[i].popularity > 50){
+      // console.log(data.tracks.items[i]);
       var opts = {
         track: data.tracks.items[i].name,
         artist: data.tracks.items[i].artists[0].name,
@@ -107,16 +102,26 @@ var trackConstruct = function(data, send){
       tracks.push(track);
     };
   };
-  for (;fetchResponse.length < 3;){
-    var index = getRandomInt(tracks.length);
-    var track = tracks[index];
-    if(fetchResponse.indexOf(track) === -1){
-      fetchResponse.push(track);
-    }
+  if (!tracks.length){
+    console.log('ZERO')
+    fetchResponse = null
+    send(fetchResponse);
   }
-  send(fetchResponse);
+  if (tracks.length){
+    console.log('LENGTH');
+    for (;fetchResponse.length < 3;){
+      var index = getRandomInt(tracks.length);
+      var track = tracks[index];
+      if(fetchResponse.indexOf(track) === -1){
+        fetchResponse.push(track);
+      }
+    }
+    send(fetchResponse);
+  }
 }
 var trackRequest = function(data, type, send){
+  console.log(data);
+  console.log(type);
   console.log('inside of trackRequest');
   request.post(authOptions, function(error, response, json){
     if (!error && response.statusCode === 200) {
@@ -129,6 +134,8 @@ var trackRequest = function(data, type, send){
         json: true
       };
       request.get(options, function(error, response, json){
+        // console.log(error);
+        // console.log(json);
         // videoCheck(json, trackConstruct, send);
         trackConstruct(json, send);
       });

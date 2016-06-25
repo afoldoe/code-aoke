@@ -47,7 +47,12 @@ app.post('/termTracks', function(req, res){
   console.log('inside of /tracks get')
   var term = req.body.term;
   var send = function(data){
-    res.send(data);
+    if (!data){
+      console.log(data);
+      res.status(404).send('Sorry, we cannot find that!')
+    }else{
+      res.send(data);
+    }
   }
   track.termFetch(term, send);
 });
