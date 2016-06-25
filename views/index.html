@@ -18,13 +18,14 @@
           <ul>
             <li><a>Home</a></li>
             <li><a id="gameStartNav" href="#gameStart">Game Start</a></li>
-            <li><a>About</a></li>
+            <li><a id="favoritesNav" href="<span></span>">Favorites</a></li>
+            <li><a href="#about">About</a></li>
           </ul>
         </div>
-        <i id="menuIcon" class="fa fa-2x fa-bars"><span></span></i>
       </div>
     </nav>
     <!-- /nav -->
+    <i id="menuIcon" class="fa fa-2x fa-bars"><span></span></i>
 
     <!-- header -->
     <header>
@@ -61,7 +62,8 @@
        <div class="container">
 
          <div class="row">
-            <div class="four columns">
+
+            <div class="four columns filters">
               <form id="genre-form" name="genre">
                 <input id="genre-filter" type="button" value="Filter by Genre">
                 <fieldset id="genre">
@@ -82,7 +84,7 @@
               </form>
             </div>
 
-            <div class="four columns">
+            <div class="four columns filters">
               <form id="year-form">
                 <input id="year-filter" type="button" value="Filter by Year">
                 <fieldset id="year">
@@ -98,10 +100,10 @@
                   </select>
                     <input id="year-submit" class="filterButton" type="submit" value="Submit">
                 </fieldset>
-
               </form>
             </div>
-          <div class="four columns">
+
+          <div class="four columns filters">
             <form id="term-form">
               <input id="term-filter" type="button" value="Filter by Term">
               <fieldset id="term-select">
@@ -109,9 +111,9 @@
                 <input type="text" value="Enter Term"/>
                 <input id="term-submit" class="filterButton" type="submit" value="Submit">
               </fieldset>
-
             </form>
           </div>
+
         </div>
       </div>
     </section>
@@ -122,7 +124,15 @@
     <section id="video-list">
     </section>
 
-    <div id='player'>
+    <div id="video-show">
+      <button id="faveButton">Add favorites</button>
+      <div id='player'>
+      </div>
+    </div>
+
+    <div id="favorites" class="container">
+      <h3>Favorites</h3>
+      <div id="closeFavorites">X</div>
     </div>
 
     <section id="about">
@@ -144,6 +154,8 @@
   <script src="https://use.fonticons.com/2c3b87aa.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+  <script src="/vendor/scripts/html5sql.js"></script>
+  <script src="/scripts/webdb.js"></script>
   <script src="/scripts/landingController.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/scripts/template.js"></script>
