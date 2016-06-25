@@ -163,3 +163,23 @@ div, iframe{
     margin-top: 10rem;
   }
 }
+
+#video-selection{
+  text-align: center;
+  margin: 0 auto;
+}
+
+#player{
+
+}
+
+#section-title{
+  font-size: 3rem;
+  margin: .5rem;
+}
+
+#message{
+  font-size: 2rem;
+  font-style: italic;
+  margin: .5rem;
+}

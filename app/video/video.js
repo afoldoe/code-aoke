@@ -58,7 +58,7 @@ var request = require('request');
             channel : data.items[i].snippet.channelTitle,
             id : data.items[i].id.videoId,
             image : data.items[i].snippet.thumbnails.high.url,
-            description : data.items[i].snippet.description
+            description : data.items[i].snippet.description,
           }
           var video = new Video(opts);
           videos.push(video);
