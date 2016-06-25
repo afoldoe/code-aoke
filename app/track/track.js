@@ -5,9 +5,7 @@ var request = require('request');
 (function(){
 //////////// Helper functions /////////////
 //////////////////////////////////////////
-var consoleLog = function(data){
-  console.log(data)
-}
+
 // var trackRandomize = function(track, send){
 //   for (;fetchResponse.length < 3;){
 //     var index = getRandomInt(tracks.length);
@@ -60,8 +58,6 @@ var Track = function(opts){
 var resultState;
 var videoCheck = function(data, callback, send){
   var checkedVideos = [];
-  // var thatdata = data;
-  // console.log(data);
   var url = "https://www.googleapis.com/youtube/v3/search";
   for (i = 0 ; i < data.tracks.items.length; i ++){
     var properties = {
@@ -111,8 +107,6 @@ var trackConstruct = function(data, send){
       tracks.push(track);
     };
   };
-  // trackRandomize(track, send);
-  // console.log(tracks);
   for (;fetchResponse.length < 3;){
     var index = getRandomInt(tracks.length);
     var track = tracks[index];
@@ -124,7 +118,6 @@ var trackConstruct = function(data, send){
 }
 var trackRequest = function(data, type, send){
   console.log('inside of trackRequest');
-  console.log(data);
   request.post(authOptions, function(error, response, json){
     if (!error && response.statusCode === 200) {
       var token = json.access_token;
@@ -151,7 +144,7 @@ var yearFetch = function(year, send) {
     trackRequest(year, 'year', send);
 }
 var termFetch = function(term, send) {
-  trackRequest(term, '', send)
+  trackRequest(term, ' ' , send)
 }
 module.exports = {
   genreFetch : genreFetch,
