@@ -26,7 +26,7 @@ var request = require('request');
     var url = "https://www.googleapis.com/youtube/v3/search";
     var properties = {
         // channelId: id,
-        key: 'AIzaSyB379-eVXShLJqsXfu06uASkyQmrN-wYPg', //Use the API key to authorize the search
+        key: 'AIzaSyD9JF5EvRhcp6f_lH5v07soFBOxASgmqCk', //Use the API key to authorize the search
         q: 'karaoke ' + artist + ' ' + track, //Specifies the query term to search for
         part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
         type: 'video', //Excludes playlists and channels from results
@@ -58,7 +58,7 @@ var request = require('request');
             channel : data.items[i].snippet.channelTitle,
             id : data.items[i].id.videoId,
             image : data.items[i].snippet.thumbnails.high.url,
-            description : data.items[i].snippet.description
+            description : data.items[i].snippet.description,
           }
           var video = new Video(opts);
           videos.push(video);
