@@ -2,8 +2,9 @@
   var controller = {};
   controller.gameStartController = function() {
       $('html, body').animate({
-          scrollTop: $("#gameStart").offset().top
+          scrollTop: $("#song-filter").offset().top
       }, 2000);
+      $('#about').fadeOut('slow');
   };
 
   controller.navHandler = function() {
