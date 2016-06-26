@@ -62,20 +62,24 @@ main {
   font-size: 20px;
 }
 
+
 /* AF MODULES FOR FILTERS */
 .filters{
   margin-top: 15%;
   margin-left: 2%;
 }
 
+
 form {
   display: inline;
   text-align: center;
 }
 
+
 /*KW MODULES FOR TRACKLIST*/
 #track-list{
-  padding: 4rem 1rem;
+  padding: 6rem 1rem;
+  padding-bottom: 5cm;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -85,6 +89,11 @@ form {
   /*height: 100%;*/
 }
 
+#video-selection {
+  padding: 6rem 1rem;
+  background-color: #373F51;
+  color: white;
+}
 
 #track-list img {
   height: 250px;
@@ -153,6 +162,7 @@ form {
   cursor: pointer;
 }
 
+
 /* AF modules for favorites*/
 #favorites {
   border-radius: 5%;
@@ -179,6 +189,7 @@ form {
   width: 4rem;
   border-radius: 15%;
 }
+
 /*#player-container{
   margin: 0 auto;
 }*/

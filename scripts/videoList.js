@@ -10,6 +10,7 @@
     });
   };
 
+
   videoList.fetchAll = function(){
     $('#track-list').on('click', '.track-title' , function(e){
       var trackTitle = $(this).text();

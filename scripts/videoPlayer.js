@@ -1,5 +1,6 @@
 (function(module){
   var videoPlayer = {};
+
   var player;
   var videoData;
   var title;
@@ -12,6 +13,7 @@
     video_id = videoData['video_id'];
     songURL = 'https://www.youtube.com/watch?v=' + video_id;
   };
+
 
   videoPlayer.createTable = function(callback) {
     webDB.execute(
@@ -72,6 +74,7 @@
 
   videoPlayer.Ready = function(){
     $('#video-list').on('click', '.video-image', function(){
+      $("#video-selection").show();
       $('#video-list').empty();
       var id = $(this).parent('div , .video-details').attr('id');
       var videoName = $(this).siblings('.video-title').text();
@@ -128,7 +131,6 @@
     });
   };
 
-
   $('#fullscreen').on('click', function(){
     player.playVideo();//won't work on mobile
     var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
@@ -139,9 +141,33 @@
 
   function onPlayerStateChange(event){
     if(event.data === 0) {
+      // document.webkitExitFullscreen();
+      function exitFullscreen() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+      exitFullscreen();
       $('#fullview').remove();
-      $('#nextAction').append('<button id="fullview">Play Again</button>');
-      $('#nextAction').append('<button id="fullview">Start Over</button>');
+      $('#salute').remove();
+      $('#nextAction').append("<button id='Play Next'>Play Again</button>");
+      $('#nextAction').on('click', function(){
+        $("#genre-filter").show();
+        $("#year-filter").show();
+        $("#term-filter").show();
+        $("#year").hide();
+        $("#genre2").hide();
+        $('#player').remove();
+        $('#playerSpace').append("<div id='player'></div>");
+        $('#track-list').show();
+        $('#song-filter').show();
+        $('#selection-title').empty();
+        $('#nextAction').empty();
+      });
     }
   }
 

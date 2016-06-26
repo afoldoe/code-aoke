@@ -5,6 +5,9 @@
       scrollTop: $('#song-filter').offset().top
     }, 2000);
     $('#about').fadeOut('slow');
+
+
+
   };
 
   controller.navHandler = function() {

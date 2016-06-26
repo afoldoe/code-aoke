@@ -14,6 +14,9 @@
   trackList.genreFetch = function(){
     $('#genre-form').submit(function(e){
       // trackList.All.length = 0;
+      $("#track-list").show();
+      $("#video-list").show();
+
       e.preventDefault();
       var selectGenre = $(this).find('#genre-select , option:selected').val();
       console.log(selectGenre);
@@ -35,8 +38,12 @@
 
   trackList.yearFetch = function(){
     $('#year-form').submit(function(e){
-      e.preventDefault();
+
     // console.log($(this));
+      $("#track-list").show();
+      $("#video-list").show();
+      
+      e.preventDefault();
       var selectYear = $(this).find('#year-select , option:selected').val();
       console.log(selectYear);
       $.ajax({
@@ -55,6 +62,10 @@
   };
   trackList.termFetch = function(){
     $('#term-form').submit(function(e){
+
+      $("#track-list").show();
+      $("#video-list").show();
+
       e.preventDefault();
       var inputTerm = $(this).find('input[type=text]').val();
       console.log(inputTerm);
@@ -97,5 +108,6 @@
   };
 
   module.trackList = trackList;
+
 
 })(window);
