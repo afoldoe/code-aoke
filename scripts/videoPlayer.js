@@ -80,9 +80,17 @@
       $('#selection-title').append('<h1 id="selection-title">'+videoName+'</h1>');
       $('#fullscreen').append('<button id="fullview">Play Fullscreen</button>');
       $('#message').append('<p id="salute">For Those About to Rock, We Salute You!</p>');
+      $('#faves').append('<button id="faveButton">Add to Favorites</button>');
+      $('#faveButton').on('click', function(e) {
+        videoPlayer.insertFavorites();
+        console.log('faveButton event');
+      });
     });
   };
 
+  videoPlayer.favoriteLoad = function() {
+
+  };
 
   videoPlayer.getFavorites = function() {
     webDB.execute('SELECT * FROM favorites', function(rows) {
@@ -97,6 +105,7 @@
     });
   };
 
+
   videoPlayer.favoriteToHtml = function(song) {
     getCompiledTemplate('favorite').then(function(handlebarsCompile){
       // console.log(handlebarsCompile);
@@ -108,9 +117,6 @@
   };
 
   videoPlayer.eventHandlers = function() {
-    $('#faveButton').on('click', function(e) {
-      videoPlayer.insertFavorites();
-    });
     $('#favoritesNav').on('click', function (e) {
       e.preventDefault();
       videoPlayer.getFavorites();
@@ -143,7 +149,16 @@
     videoPlayer.Ready();
     videoPlayer.createTable();
     videoPlayer.eventHandlers();
+    videoPlayer.favoriteLoad();
   };
+
+  $('.favoriteTitle').on('click', function(e) {
+    e.preventDefault();
+    console.log('event fired');
+    $('html, body').animate({
+      scrollTop: $('#video-selection').offset().top
+    }, 2000);
+  });
 
   module.videoPlayer = videoPlayer;
 

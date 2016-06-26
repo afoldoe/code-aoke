@@ -3,7 +3,7 @@
   var videoList = {};
 
   videoList.toHtml = function(track){
-    // $('#track-list').empty();
+    $('#track-list').empty();
     getCompiledTemplate('video').then(function(handlebarsCompile){
       var html = handlebarsCompile(track);
       $('#video-list').append(html);

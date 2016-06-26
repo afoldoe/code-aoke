@@ -164,6 +164,7 @@ form {
   left: 5%;
   background-color: lightgray;
   text-align: center;
+  z-index: 10;
 }
 #favorites h3 {
   border-bottom: 2px solid black;
