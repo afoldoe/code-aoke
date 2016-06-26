@@ -167,6 +167,7 @@
         $('#song-filter').show();
         $('#selection-title').empty();
         $('#nextAction').empty();
+        $('#faveButton').remove();
       });
     }
   }
