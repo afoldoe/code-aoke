@@ -1,0 +1,165 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="vendor/styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="vendor/styles/skeleton.css">
+    <link rel="stylesheet" type="text/css" href="styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="styles/modules.css">
+    <link rel="stylesheet" type="text/css" href="styles/state.css">
+  </head>
+
+  <body>
+    <!-- nav -->
+    <nav id="nav" class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <ul>
+            <li><a>Home</a></li>
+            <li><a id="gameStartNav" href="#gameStart">Game Start</a></li>
+            <li><a>About</a></li>
+          </ul>
+        </div>
+        <i id="menuIcon" class="fa fa-2x fa-bars"><span></span></i>
+      </div>
+    </nav>
+    <!-- /nav -->
+
+    <!-- header -->
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="twelve columns">
+            <h1>Karaoke Roulette</h1>
+          </div>
+        </div>
+      </div>
+      <button id="startButton">Hit it!</button>
+    </header>
+    <!-- /header -->
+
+      <!-- <div class="container" id="gameStart">
+        <div class="row">
+          <div class="twelve columns">
+            <h4>So tell me what you want, what you really, really want:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="six columns">
+            <button id="freeplay">FREEPLAY</button>
+          </div>
+          <div class="six columns">
+            <button id="vs">VERSUS</button>
+          </div>
+        <div class="row">
+      </div> -->
+
+      <section id="song-filter">
+       <br><br>
+       <h4>Pick your poison! Filter by genre, time period, or get specific with term search.</h4>
+       <br><br>
+
+       <!-- <div class="container" > -->
+         <!-- <div class="row"> -->
+            <!-- <div class="four columns"> -->
+                <form id="genre-form" name="genre">
+                <input id="genre-filter" type="button" value="Filter by Genre">
+                <fieldset id="genre2">
+                  <h5>Genres</h5>
+                  <select id="genre-select" name="genre"><br>
+                    <option value="all">--Select Genre--</option>
+                    <option value="rock">Rock</option>
+                    <option value="hip-hop"> Hip-Hop</option>
+                    <option value="country"> Country</option>
+                    <option value="metal"> Metal</option>
+                    <option value="pop"> Pop</option>
+                    <option value="punk"> Punk</option>
+                    <option value="soul"> Soul</option>
+                    <option value="rap"> Rap</option>
+                  </select><br>
+                  <input id="genre-submit" class="filterButton" type="submit" value="Submit">
+                </fieldset>
+              </form>
+            <!-- </div> -->
+
+            <!-- <div class="four columns"> -->
+              <form id="year-form">
+                <input id="year-filter" type="button" value="Filter by Year">
+                <fieldset id="year">
+                  <h5>Time Period</h5>
+                  <select id="year-select" name="year">
+                    <option value="">--Select Decade--</option>
+                    <option value="2000-2010">2000-2010</option>
+                    <option value="1990-2000">1990-2000</option>
+                    <option value="1980-1990">1980-1990</option>
+                    <option value="1970-1980">1970-1980</option>
+                    <option value="1960-1970">1960-1970</option>
+                  </select><br>
+                    <input id="year-submit" class="filterButton" type="submit" value="Submit">
+                </fieldset>
+              </form>
+            <!-- </div> -->
+          <!-- <div class="four columns"> -->
+            <form id="term-form">
+              <input id="term-filter" type="button" value="Filter by Term">
+              <fieldset id="term-select">
+                <h5>Term Search</h5>
+                <input type="text" value="Enter Term"/><br>
+                <input id="term-submit" class="filterButton" type="submit" value="Submit">
+              </fieldset>
+            </form>
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    </section>
+
+    <section id="track-list">
+    </section>
+
+    <section id="video-list">
+    </section>
+
+    <section id="video-selection">
+      <div id='selection-title'></div>
+      <div id='player'></div>
+      <div id='message'></div>
+      <div id='fullscreen'></div>
+      <div id='nextAction'></div>
+    </selection>
+
+    <section id="about">
+      <h3>Meet the Code-aoke Team!</h3>
+        <div id="about-pics" class="row">
+          <div class="three columns"><img src="cb.jpg"></div>
+          <div class="three columns"><img src="pic-af.jpeg"></div>
+          <div class="about three columns"><img src="nr-project.jpg"></div>
+          <div class="three columns"><img src="kw-pic.jpeg"></div>
+        </div>
+        <div id="names" class="row">
+          <div class="three columns">Cass Burt</div>
+          <div class="three columns">Arielle Foldoe</div>
+          <div class="three columns">Nicholle Romero</div>
+          <div class="three columns">Keenan Wells</div>
+        </div>
+    </section>
+
+  <script src="https://use.fonticons.com/2c3b87aa.js"></script>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+  <script src="/scripts/landingController.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="/scripts/template.js"></script>
+  <script src="/scripts/trackList.js"></script>
+  <script src="/scripts/filterController.js"></script>
+  <script src="/scripts/videoList.js"></script>
+  <script src="/scripts/videoPlayer.js"></script>
+  <script>
+    controller.navHandler();
+    trackList.initAll();
+    videoList.initAll();
+    videoPlayer.initAll();
+  </script>
+
+</body>
+</html>

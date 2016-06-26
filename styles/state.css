@@ -1,0 +1,52 @@
+fieldset {
+  display: none;
+}
+
+
+
+
+
+
+
+
+ button:hover {
+  background-color: #5AE28A;
+  border: 3px solid #1B2347;
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  transition: .5s;
+  opacity: 1;
+}
+#nav a:hover {
+  color: #C8BFC7;
+  transition: .5s;
+  border-bottom: 3px solid #C8BFC7;
+
+}
+
+#song-select{
+  text-align: center;
+  border: 1px solid blue;
+  width: 100%;
+}
+#green {
+  background-color: #5AE28A;
+  padding: 5%;
+}
+#lightblue {
+  background-color: #6E9AAF;
+  padding: 5%;
+}
+#darkblue {
+  background-color: #1B2347;
+  padding: 5%;
+}
+#slate {
+  background-color: #373F51;
+  padding: 5%;
+}
+#lightgray {
+  background-color: #C8BFC7;
+  padding: 5%;
+}
