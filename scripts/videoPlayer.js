@@ -23,6 +23,7 @@
 
   videoPlayer.Ready = function(){
     $('#video-list').on('click', '.video-image', function(){
+      $("#video-selection").show();
       $('#video-list').empty();
       var id = $(this).parent('div , .video-details').attr('id');
       var videoName = $(this).siblings('.video-title').text();
@@ -49,9 +50,32 @@
 
   function onPlayerStateChange(event){
     if(event.data === 0) {
+      // document.webkitExitFullscreen();
+      function exitFullscreen() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+      exitFullscreen();
       $('#fullview').remove();
-      $('#nextAction').append("<button id='fullview'>Play Again</button>");
-      $('#nextAction').append("<button id='fullview'>Start Over</button>");
+      $('#salute').remove();
+      $('#nextAction').append("<button id='playAgain'>Play Again</button>");
+      $('#nextAction').on('click', function(){
+        $('#player').fadeOut('slow', function(){
+          $(this).hide();
+        });
+        $('#video-selection').fadeOut('slow', function(){
+          $(this).hide();
+        });
+        $("#year-select").show();
+        $("#genre-select").show();
+        $("#term-select").show();
+        $("#song-filter").show();
+      });
     }
   }
 
