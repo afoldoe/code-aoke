@@ -1,5 +1,6 @@
 (function(module){
   var videoPlayer = {};
+
   var player;
   var videoData;
   var title;
@@ -12,6 +13,7 @@
     video_id = videoData['video_id'];
     songURL = 'https://www.youtube.com/watch?v=' + video_id;
   };
+
 
   videoPlayer.createTable = function(callback) {
     webDB.execute(
@@ -84,7 +86,6 @@
     });
   };
 
-
   videoPlayer.getFavorites = function() {
     webDB.execute('SELECT * FROM favorites', function(rows) {
       if(rows.length) {
@@ -122,7 +123,6 @@
       $('#favorites').slideUp(500);
     });
   };
-
 
   $('#fullscreen').on('click', function(){
     player.playVideo();//won't work on mobile

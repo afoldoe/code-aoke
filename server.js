@@ -14,10 +14,8 @@ app.use('/vendor', express.static('vendor'));
 app.use('/scripts', express.static('scripts'));
 app.use('/hbs', express.static('hbs'));
 
-var port = 8888;
 
-
-
+var port = process.env.PORT || 3000;
 
 
 app.get('/', function(req, res){

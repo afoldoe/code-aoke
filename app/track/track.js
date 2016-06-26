@@ -1,4 +1,4 @@
-//import spotify api config variables and request.
+
 var spotifyAPI = require('../../config/spotify_api.js');
 var video = require('../video/video.js');
 var request = require('request');

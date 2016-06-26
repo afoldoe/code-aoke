@@ -1,3 +1,7 @@
+$("#track-list").hide();
+$("#video-list").hide();
+
+
 $("#genre-filter").click(function(){
   $("#genre2").fadeIn("slow");
   $("#year-filter").hide();
