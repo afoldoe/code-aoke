@@ -24,10 +24,13 @@ fieldset {
   border-bottom: 3px solid #C8BFC7;
 
 }
+<<<<<<< HEAD
+=======
 #closeFavorites:hover {
   background-color: red;
   transition: .5s;
 }
+>>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
 
 #song-select{
   text-align: center;
