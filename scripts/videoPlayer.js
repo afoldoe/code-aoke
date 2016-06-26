@@ -90,10 +90,9 @@
       });
     });
   };
-
-  videoPlayer.favoriteLoad = function() {
-
-  };
+  // videoPlayer.favoriteLoad = function() {
+  //
+  // };
 
   videoPlayer.getFavorites = function() {
     webDB.execute('SELECT * FROM favorites', function(rows) {
@@ -110,12 +109,16 @@
 
 
   videoPlayer.favoriteToHtml = function(song) {
+    $('#insertFavorites').empty();
+    $('#closeFavorites').on('click', function() {
+      $('#favorites').slideUp(500);
+    });
     getCompiledTemplate('favorite').then(function(handlebarsCompile){
       // console.log(handlebarsCompile);
 
       var html = handlebarsCompile(song);
       // console.log(html);
-      $('#favorites').append(html);
+      $('#insertFavorites').append(html);
     });
   };
 
@@ -125,9 +128,6 @@
       videoPlayer.getFavorites();
       $('nav').toggle();
       $('#favorites').slideDown(500);
-    });
-    $('#closeFavorites').on('click', function() {
-      $('#favorites').slideUp(500);
     });
   };
 
@@ -175,16 +175,16 @@
     videoPlayer.Ready();
     videoPlayer.createTable();
     videoPlayer.eventHandlers();
-    videoPlayer.favoriteLoad();
+    // videoPlayer.favoriteLoad();
   };
 
-  $('.favoriteTitle').on('click', function(e) {
-    e.preventDefault();
-    console.log('event fired');
-    $('html, body').animate({
-      scrollTop: $('#video-selection').offset().top
-    }, 2000);
-  });
+  // $('.favoriteTitle').on('click', function(e) {
+  //   e.preventDefault();
+  //   console.log('event fired');
+  //   $('html, body').animate({
+  //     scrollTop: $('#video-selection').offset().top
+  //   }, 2000);
+  // });
 
   module.videoPlayer = videoPlayer;
 

@@ -1,13 +1,21 @@
 (function(module){
   var controller = {};
   controller.gameStartController = function() {
+    $('#genre-filter').show();
+    $('#year-filter').show();
+    $('#term-filter').show();
+    $('#year').hide();
+    $('#genre2').hide();
+    $('#song-filter').slideDown();
     $('html, body').animate({
       scrollTop: $('#song-filter').offset().top
     }, 2000);
-    $('#about').fadeOut('slow');
+  };
 
-
-
+  controller.aboutHandler = function() {
+    $('html, body').animate({
+      scrollTop: $('#about').offset().top
+    }, 2000);
   };
 
   controller.navHandler = function() {
@@ -26,7 +34,7 @@
     //   }
     // });
 
-
+  $('#about').on('click', controller.aboutHandler);
   $('#startButton').on('click', controller.gameStartController);
   $('#gameStartNav').on('click', controller.gameStartController);
   module.controller = controller;
