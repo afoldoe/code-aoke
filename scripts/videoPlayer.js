@@ -1,5 +1,6 @@
 (function(module){
   var videoPlayer = {};
+
   var player;
   var videoData;
   var title;
@@ -12,6 +13,7 @@
     video_id = videoData['video_id'];
     songURL = 'https://www.youtube.com/watch?v=' + video_id;
   };
+
 
   videoPlayer.createTable = function(callback) {
     webDB.execute(
@@ -72,6 +74,7 @@
 
   videoPlayer.Ready = function(){
     $('#video-list').on('click', '.video-image', function(){
+      $("#video-selection").show();
       $('#video-list').empty();
       var id = $(this).parent('div , .video-details').attr('id');
       var videoName = $(this).siblings('.video-title').text();
@@ -82,7 +85,6 @@
       $('#message').append('<p id="salute">For Those About to Rock, We Salute You!</p>');
     });
   };
-
 
   videoPlayer.getFavorites = function() {
     webDB.execute('SELECT * FROM favorites', function(rows) {
@@ -122,7 +124,6 @@
     });
   };
 
-
   $('#fullscreen').on('click', function(){
     player.playVideo();//won't work on mobile
     var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
@@ -133,9 +134,44 @@
 
   function onPlayerStateChange(event){
     if(event.data === 0) {
+      // document.webkitExitFullscreen();
+      function exitFullscreen() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+      exitFullscreen();
       $('#fullview').remove();
-      $('#nextAction').append('<button id="fullview">Play Again</button>');
-      $('#nextAction').append('<button id="fullview">Start Over</button>');
+      $('#salute').remove();
+      $('#nextAction').append("<button id='playAgain'>Play Again</button>");
+      $('#nextAction').on('click', function(){
+        //hide filter elements
+        // $("#genre-filter").hide();
+        // $("#year-filter").hide();
+        // $("#term-filter").hide();
+        // $("#year").hide();
+        // $("#genre2").hide();
+        // $("#year-select").hide();
+        // $("#genre-select").hide();
+        // $("#term-select").hide();
+        //empty lists
+        $('#track-list').empty();
+        $('#video-list').empty();
+        //remove and replace player
+        $('#player').remove();
+        $('#video-selection').append("<div id='player'></div>");
+        //show the song filter and forms
+        $("#term-form").show();
+        $("#year-form").show();
+        $("#genre-form").show();
+        $('#song-filter').show();
+        $('#selection-title').empty();
+        $('#nextAction').empty();
+      });
     }
   }
 
