@@ -147,18 +147,19 @@
       exitFullscreen();
       $('#fullview').remove();
       $('#salute').remove();
-      $('#nextAction').append("<button id='playAgain'>Play Again</button>");
+      $('#nextAction').append("<button id='Play Next'>Play Again</button>");
       $('#nextAction').on('click', function(){
-        $('#player').fadeOut('slow', function(){
-          $(this).hide();
-        });
-        $('#video-selection').fadeOut('slow', function(){
-          $(this).hide();
-        });
-        $("#year-select").show();
-        $("#genre-select").show();
-        $("#term-select").show();
-        $("#song-filter").show();
+        $("#genre-filter").show();
+        $("#year-filter").show();
+        $("#term-filter").show();
+        $("#year").hide();
+        $("#genre2").hide();
+        $('#player').remove();
+        $('#playerSpace').append("<div id='player'></div>");
+        $('#track-list').show();
+        $('#song-filter').show();
+        $('#selection-title').empty();
+        $('#nextAction').empty();
       });
     }
   }
