@@ -78,7 +78,8 @@ form {
 
 /*KW MODULES FOR TRACKLIST*/
 #track-list{
-  padding: 4rem 1rem;
+  padding: 6rem 1rem;
+  padding-bottom: 5cm;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -88,6 +89,11 @@ form {
   /*height: 100%;*/
 }
 
+#video-selection {
+  padding: 6rem 1rem;
+  background-color: #373F51;
+  color: white;
+}
 
 #track-list img {
   height: 250px;
