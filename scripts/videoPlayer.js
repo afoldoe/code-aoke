@@ -1,27 +1,6 @@
 (function(module){
   var videoPlayer = {};
-<<<<<<< HEAD
 
-  var player;
-   function onYouTubeIframeAPIReady(id) {
-     player = new YT.Player('player', {
-       height: '390',
-       width: '640',
-       videoId: id,
-       playerVars: {
-               autohide: 1,
-               controls: 1,
-               showinfo: 0,
-               disablekb: 1,
-               modestbranding: 1
-           },
-       events: {
-         'onReady': onPlayerReady,
-         'onStateChange': onPlayerStateChange
-       }
-     });
-   }
-=======
   var player;
   var videoData;
   var title;
@@ -34,6 +13,7 @@
     video_id = videoData['video_id'];
     songURL = 'https://www.youtube.com/watch?v=' + video_id;
   };
+
 
   videoPlayer.createTable = function(callback) {
     webDB.execute(
@@ -91,35 +71,20 @@
       }
     });
   }
->>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
 
   videoPlayer.Ready = function(){
     $('#video-list').on('click', '.video-image', function(){
+      $("#video-selection").show();
       $('#video-list').empty();
       var id = $(this).parent('div , .video-details').attr('id');
       var videoName = $(this).siblings('.video-title').text();
       console.log(videoName);
       onYouTubeIframeAPIReady(id);
-<<<<<<< HEAD
-      $('#selection-title').append("<h1 id='selection-title'>"+videoName+"</h1>");
-      $('#fullscreen').append("<button id='fullview'>Play Fullscreen</button>");
-      $('#message').append("<p id='salute'>For Those About to Rock, We Salute You!</p>");
-    })
-  }
-
- function onPlayerReady(event){
-      player = event.target;
-      iframe = document.querySelector('#player');
-   }
-
-  $("#fullscreen").on("click", function(){
-=======
       $('#selection-title').append('<h1 id="selection-title">'+videoName+'</h1>');
       $('#fullscreen').append('<button id="fullview">Play Fullscreen</button>');
       $('#message').append('<p id="salute">For Those About to Rock, We Salute You!</p>');
     });
   };
-
 
   videoPlayer.getFavorites = function() {
     webDB.execute('SELECT * FROM favorites', function(rows) {
@@ -159,42 +124,62 @@
     });
   };
 
-
   $('#fullscreen').on('click', function(){
->>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
     player.playVideo();//won't work on mobile
     var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
     if (requestFullScreen) {
       requestFullScreen.bind(iframe)();
     }
-<<<<<<< HEAD
-  })
-=======
   });
->>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
 
   function onPlayerStateChange(event){
     if(event.data === 0) {
+      // document.webkitExitFullscreen();
+      function exitFullscreen() {
+        if(document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+      exitFullscreen();
       $('#fullview').remove();
-<<<<<<< HEAD
-      $('#nextAction').append("<button id='fullview'>Play Again</button>");
-      $('#nextAction').append("<button id='fullview'>Start Over</button>");
-=======
-      $('#nextAction').append('<button id="fullview">Play Again</button>');
-      $('#nextAction').append('<button id="fullview">Start Over</button>');
->>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
+      $('#salute').remove();
+      $('#nextAction').append("<button id='playAgain'>Play Again</button>");
+      $('#nextAction').on('click', function(){
+        //hide filter elements
+        // $("#genre-filter").hide();
+        // $("#year-filter").hide();
+        // $("#term-filter").hide();
+        // $("#year").hide();
+        // $("#genre2").hide();
+        // $("#year-select").hide();
+        // $("#genre-select").hide();
+        // $("#term-select").hide();
+        //empty lists
+        $('#track-list').empty();
+        $('#video-list').empty();
+        //remove and replace player
+        $('#player').remove();
+        $('#video-selection').append("<div id='player'></div>");
+        //show the song filter and forms
+        $("#term-form").show();
+        $("#year-form").show();
+        $("#genre-form").show();
+        $('#song-filter').show();
+        $('#selection-title').empty();
+        $('#nextAction').empty();
+      });
     }
   }
 
   videoPlayer.initAll = function(){
     videoPlayer.Ready();
-<<<<<<< HEAD
-  }
-=======
     videoPlayer.createTable();
     videoPlayer.eventHandlers();
   };
->>>>>>> bd137c3789d80db84790962669cbe463cc7e6305
 
   module.videoPlayer = videoPlayer;
 
