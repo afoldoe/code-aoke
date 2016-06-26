@@ -36,7 +36,6 @@ main {
   vertical-align: middle ;
   text-align: center ;
   padding: 70px 0;
-
   height: 50%;
   color: #373F51;
   margin: auto;
@@ -45,12 +44,12 @@ main {
   vertical-align: middle;
   text-align: center;
   padding: 70px 0;
+  height: 50%;
   background-color: #373F51;
   color: white;
   /*height: 30%;*/
   /*color: #373F51;*/
   /*margin: auto;*/
-
 }
 
 #about-pics img {
@@ -63,11 +62,16 @@ main {
   font-size: 20px;
 }
 
+/* AF MODULES FOR FILTERS */
+.filters{
+  margin-top: 15%;
+  margin-left: 2%;
+}
+
 form {
   display: inline;
   text-align: center;
 }
-
 
 /*KW MODULES FOR TRACKLIST*/
 #track-list{
@@ -149,6 +153,31 @@ form {
   cursor: pointer;
 }
 
+/* AF modules for favorites*/
+#favorites {
+  border-radius: 5%;
+  border: 3px solid black;
+  padding: 5%;
+  display: none;
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  background-color: lightgray;
+  text-align: center;
+}
+#favorites h3 {
+  border-bottom: 2px solid black;
+  padding: 2rem;
+}
+#closeFavorites {
+  font-size: 2.5rem;
+  position: absolute;
+  right: 2%;
+  top: 5%;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 15%;
+}
 /*#player-container{
   margin: 0 auto;
 }*/

@@ -9,6 +9,6 @@
     .then(function(text){
       return Handlebars.compile(text);
     });
-}
+  }
   module.getCompiledTemplate = getCompiledTemplate;
 })(window);

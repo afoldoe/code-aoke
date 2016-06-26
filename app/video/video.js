@@ -6,7 +6,7 @@ var request = require('request');
   //////////////////////////////////////////
   var wordInString = function(s, word){
     return new RegExp( '\\b' + word + '\\b', 'i').test(s);
-  }
+  };
 
   ///// Constructor and and API functions ///
   //////////////////////////////////////////
@@ -23,16 +23,15 @@ var request = require('request');
   var videoRequest = function(track, artist, callback, send){
     console.log(track);
     console.log(artist);
-    var url = "https://www.googleapis.com/youtube/v3/search";
+    var url = 'https://www.googleapis.com/youtube/v3/search';
     var properties = {
-        // channelId: id,
-        key: 'AIzaSyC5e_6oGK54wZOj8AjkG4U7exOpX8uDBL4', //Use the API key to authorize the search
-        q: 'karaoke ' + artist + ' ' + track, //Specifies the query term to search for
-        part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
-        type: 'video', //Excludes playlists and channels from results
-        videoEmbeddable: true, //Specifies only embeddable videos
-        maxResults: 15, //maximim number of results
-        format: 'json'
+      key: 'AIzaSyC5e_6oGK54wZOj8AjkG4U7exOpX8uDBL4', //Use the API key to authorize the search
+      q: 'karaoke ' + artist + ' ' + track, //Specifies the query term to search for
+      part: 'snippet', //Specifies a comma-separated list of one or more SEARCH resource properties that the API response will include. SNIPPET is the parameter value.
+      type: 'video', //Excludes playlists and channels from results
+      videoEmbeddable: true, //Specifies only embeddable videos
+      maxResults: 15, //maximim number of results
+      format: 'json'
       }
       console.log('inside of videoRequest');
       request.get({url : url, qs : properties}, function(error, response, json){
@@ -51,7 +50,7 @@ var request = require('request');
     videos.length = 0;
     console.log('inside video construct')
     for (i = 0 ; i < data.items.length; i ++){
-        console.log(wordInString(data.items[i].snippet.title, 'karaoke'));
+        // console.log(wordInString(data.items[i].snippet.title, 'karaoke'));
         if (wordInString(data.items[i].snippet.title, 'karaoke')){
           var opts = {
             title : data.items[i].snippet.title,
