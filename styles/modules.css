@@ -33,10 +33,10 @@ main {
 
 #song-filter {
   background-color: #C8BFC7;
-  vertical-align: middle;
-  text-align: center;
+  vertical-align: middle ;
+  text-align: center ;
   padding: 70px 0;
-  height: 70%;
+  height: 50%;
   color: #373F51;
   margin: auto;
 }
@@ -45,12 +45,21 @@ main {
   text-align: center;
   padding: 70px 0;
   height: 50%;
-  color: #373F51;
-  margin: auto;
+  background-color: #373F51;
+  color: white;
+  /*height: 30%;*/
+  /*color: #373F51;*/
+  /*margin: auto;*/
 }
 
-img {
-  height: 150px;
+#about-pics img {
+  height: 200px;
+  border-radius: 50%;
+  border:5px solid white;
+}
+
+#names {
+  font-size: 20px;
 }
 
 /* AF MODULES FOR FILTERS */
@@ -59,15 +68,26 @@ img {
   margin-left: 2%;
 }
 
-
+form {
+  display: inline;
+  text-align: center;
+}
 
 /*KW MODULES FOR TRACKLIST*/
 #track-list{
-  margin: 4rem 1rem;
+  padding: 4rem 1rem;
   display: flex;
   text-align: center;
   justify-content: center;
   flex-wrap: wrap;
+  background-color: #373F51;
+  color: white;
+  /*height: 100%;*/
+}
+
+
+#track-list img {
+  height: 250px;
 }
 
 .track-details{
@@ -97,12 +117,14 @@ img {
 
 
 #video-list{
-  margin: 4rem 1rem;
+  /*padding: 4rem 1rem;*/
   display: flex;
   text-align: center;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
+  background-color: #373F51;
+  color: white;
 }
 
 .video-details{
@@ -156,8 +178,37 @@ img {
   width: 4rem;
   border-radius: 15%;
 }
+/*#player-container{
+  margin: 0 auto;
+}*/
+
+div, iframe{
+  display: block;
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 900px) {
   #startButton {
     margin-top: 10rem;
   }
+}
+
+#video-selection{
+  text-align: center;
+  margin: 0 auto;
+}
+
+#player{
+
+}
+
+#section-title{
+  font-size: 3rem;
+  margin: .5rem;
+}
+
+#message{
+  font-size: 2rem;
+  font-style: italic;
+  margin: .5rem;
 }

@@ -36,6 +36,7 @@
   trackList.yearFetch = function(){
     $('#year-form').submit(function(e){
       e.preventDefault();
+    // console.log($(this));
       var selectYear = $(this).find('#year-select , option:selected').val();
       console.log(selectYear);
       $.ajax({
@@ -45,11 +46,11 @@
           'year' : selectYear
         }
       })
-      .then(function(data){
-        data.forEach(function(track){
-          trackList.toHtml(track);
-        });
+    .then(function(data){
+      data.forEach(function(track){
+        trackList.toHtml(track);
       });
+    });
     });
   };
   trackList.termFetch = function(){
@@ -62,17 +63,20 @@
         url: '/termTracks',
         data: {
           'term' : inputTerm
+        },
+        success: function(data, error, xhr){
+          data.forEach(function(track){
+            trackList.toHtml(track);
+            console.log(track);
+          });
+        },
+        error: function(data, error, xhr){
+          alert('Sorry, please choose another track, your search had no results');
         }
-      })
-      .then(function(data){
-        data.forEach(function(track){
-          trackList.toHtml(track);
-          console.log(track);
-        });
       });
     });
   };
-  trackList.showTracks = function() {
+  trackList.showVideos = function() {
     $('.filterButton').on('click', function() {
       $('#about').hide();
       $('header').slideUp('slow', function() {
@@ -86,7 +90,7 @@
   };
 
   trackList.initAll = function(){
-    trackList.showTracks();
+    trackList.showVideos();
     trackList.genreFetch();
     trackList.yearFetch();
     trackList.termFetch();

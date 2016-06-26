@@ -1,23 +1,23 @@
 $("#genre-filter").click(function(){
-  $("#genre").show();
+  $("#genre2").fadeIn("slow");
   $("#year-filter").hide();
-  $("#term-filter").hide();
   $("#genre-filter").hide();
-  $("#genre-submit").show();
+  $("#term-filter").hide();
+  $("#genre-submit").fadeIn("slow");
 });
 
 $("#year-filter").click(function(){
-  $("#year").show();
-  $("#term-filter").hide();
   $("#genre-filter").hide();
+  $("#term-filter").hide();
   $("#year-filter").hide();
-  $("#year-submit").show();
+  $("#year").fadeIn("slow");
+  $("#year-submit").fadeIn("slow");
 });
 
 $("#term-filter").click(function(){
-  $("#term-select").show();
+  $("#term-select").fadeIn("slow");
   $("#year-filter").hide();
   $("#genre-filter").hide();
   $("#term-filter").hide();
-  $("#term-submit").show();
+  $("#term-submit").fadeIn("slow");
 });
