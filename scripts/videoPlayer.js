@@ -147,27 +147,16 @@
       exitFullscreen();
       $('#fullview').remove();
       $('#salute').remove();
-      $('#nextAction').append("<button id='playAgain'>Play Again</button>");
+      $('#nextAction').append("<button id='Play Next'>Play Again</button>");
       $('#nextAction').on('click', function(){
-        //hide filter elements
-        // $("#genre-filter").hide();
-        // $("#year-filter").hide();
-        // $("#term-filter").hide();
-        // $("#year").hide();
-        // $("#genre2").hide();
-        // $("#year-select").hide();
-        // $("#genre-select").hide();
-        // $("#term-select").hide();
-        //empty lists
-        $('#track-list').empty();
-        $('#video-list').empty();
-        //remove and replace player
+        $("#genre-filter").show();
+        $("#year-filter").show();
+        $("#term-filter").show();
+        $("#year").hide();
+        $("#genre2").hide();
         $('#player').remove();
-        $('#video-selection').append("<div id='player'></div>");
-        //show the song filter and forms
-        $("#term-form").show();
-        $("#year-form").show();
-        $("#genre-form").show();
+        $('#playerSpace').append("<div id='player'></div>");
+        $('#track-list').show();
         $('#song-filter').show();
         $('#selection-title').empty();
         $('#nextAction').empty();
