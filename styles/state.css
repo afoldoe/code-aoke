@@ -2,13 +2,6 @@ fieldset {
   display: none;
 }
 
-
-
-
-
-
-
-
  button:hover {
   background-color: #5AE28A;
   border: 3px solid #1B2347;
@@ -18,19 +11,17 @@ fieldset {
   transition: .5s;
   opacity: 1;
 }
+
 #nav a:hover {
   color: #C8BFC7;
   transition: .5s;
   border-bottom: 3px solid #C8BFC7;
-
 }
-
 
 #closeFavorites:hover {
   background-color: red;
   transition: .5s;
 }
-
 
 #song-select{
   text-align: center;

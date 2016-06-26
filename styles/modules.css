@@ -4,6 +4,7 @@ button {
   opacity: .5;
   background-color: #fff;
 }
+
 main {
   background-color: #373F51;
   vertical-align: middle;
@@ -11,25 +12,23 @@ main {
   padding: 70px 0;
   height: 70%;
 }
+
 .scrollDown {
     opacity: 0;
     transition: all 2s ease;
   }
+
   .scrollUp {
     opacity: 1;
     transition: all 2s ease;
   }
+
 #gameStart {
   margin: auto;
   text-align: center;
   color: white;
   /*width: 100%;*/
 }
-
-/*#gameStart h3 {
-  margin-bottom: 10rem;
-  margin-top: -10rem;
-}*/
 
 #song-filter {
   background-color: #C8BFC7;
@@ -40,35 +39,16 @@ main {
   color: #373F51;
   margin: auto;
 }
-#about {
-  vertical-align: middle;
-  text-align: center;
-  padding: 70px 0;
-  height: 50%;
-  background-color: #373F51;
-  color: white;
-  /*height: 30%;*/
-  /*color: #373F51;*/
-  /*margin: auto;*/
-}
-
-#about-pics img {
-  height: 200px;
-  border-radius: 50%;
-  border:5px solid white;
-}
 
 #names {
   font-size: 20px;
 }
-
 
 /* AF MODULES FOR FILTERS */
 .filters{
   margin-top: 15%;
   margin-left: 2%;
 }
-
 
 form {
   display: inline;
@@ -152,16 +132,14 @@ form {
   border-radius: 4px;
 }
 
-
 .video-image{
-  max-width: 40rem;
+  max-width: 30rem;
   height: auto;
 }
 
 .video-image:hover{
   cursor: pointer;
 }
-
 
 /* AF modules for favorites*/
 #favorites {
@@ -176,10 +154,12 @@ form {
   text-align: center;
   z-index: 10;
 }
+
 #favorites h3 {
   border-bottom: 2px solid black;
   padding: 2rem;
 }
+
 #closeFavorites {
   font-size: 2.5rem;
   position: absolute;
@@ -203,6 +183,12 @@ div, iframe{
   #startButton {
     margin-top: 10rem;
   }
+
+  .video-image{
+    max-width: 40rem;
+    height: auto;
+  }
+
 }
 
 #video-selection{
