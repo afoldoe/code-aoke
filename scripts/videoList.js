@@ -10,6 +10,7 @@
     });
   }
 
+
   videoList.fetchAll = function(){
     $('#track-list').on('click', '.track-title' , function(e){
       var trackTitle = $(this).text();
@@ -28,14 +29,28 @@
         data.forEach(function(track){
           console.log(track);
           videoList.toHtml(track);
-        })
-      })
+        });
+      });
     });
-  }
+  };
+
   videoList.initAll = function(){
-    videoList.fetchAll()
-  }
+    videoList.fetchAll();
+    videoList.showVideos();
+  };
+
+  videoList.showVideos = function() {
+    $('#track-list').on('click', '.track-title' , function(e){
+      $('#track-list').slideUp(3000, function() {
+        $('html, body').animate({
+          scrollTop: $('#video-list').offset().top
+        }, 2000);
+        $('#track-list').empty();
+      });
+      console.log('slide slide');
+    });
+  };
 
   module.videoList = videoList;
 
-})(window)
+})(window);
