@@ -1,5 +1,7 @@
 (function(module){
   var controller = {};
+
+  //to show only game sections on game start
   controller.gameStartController = function() {
     $('html, body').animate({
       scrollTop: $('#song-filter').offset().top
@@ -7,6 +9,7 @@
     $('#about').fadeOut('slow');
   };
 
+  //toggles nav bar
   controller.navHandler = function() {
     $('nav').hide();
     $('#menuIcon').on('click', function() {

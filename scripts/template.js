@@ -1,4 +1,6 @@
 (function(module){
+
+  // function to compile Handlebars templates
   function getCompiledTemplate(name){
     console.log(name);
     console.log('inside of getCompiledTemplate');

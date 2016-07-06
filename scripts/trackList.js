@@ -1,6 +1,7 @@
 (function(module){
   var trackList = {};
 
+  //appends track selection to html
   trackList.toHtml = function(track){
     $('#track-list').empty();
     getCompiledTemplate('track').then(function(handlebarsCompile){
@@ -11,6 +12,7 @@
     });
   };
 
+  //call to Spotify API to get a list of songs in the genre the user selected
   trackList.genreFetch = function(){
     $('#genre-form').submit(function(e){
       // trackList.All.length = 0;
@@ -33,6 +35,7 @@
     });
   };
 
+  //call to Spotify API to get a list of songs in the decade the user selected
   trackList.yearFetch = function(){
     $('#year-form').submit(function(e){
       e.preventDefault();
@@ -53,6 +56,8 @@
     });
     });
   };
+
+  //call to Spotify API to get a list of songs based on the term the user inputed
   trackList.termFetch = function(){
     $('#term-form').submit(function(e){
       e.preventDefault();
@@ -76,6 +81,8 @@
       });
     });
   };
+
+  //hide hides the #about section and #song-filter and shows trackList
   trackList.showVideos = function() {
     $('.filterButton').on('click', function() {
       $('#about').hide();
@@ -89,6 +96,7 @@
     });
   };
 
+  //intitializes tracklist
   trackList.initAll = function(){
     trackList.showVideos();
     trackList.genreFetch();
