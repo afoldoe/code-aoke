@@ -1,4 +1,4 @@
-# spotify_api
+# code-aoke
 
 Clone repo and ```npm install```
 
